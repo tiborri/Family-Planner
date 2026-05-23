@@ -1,0 +1,2647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Family Planner — May 2026</title>
+<!-- ── Cache control: tell every cache layer not to store this page ── -->
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<!-- ── Version stamp — bump this string whenever you publish an update ── -->
+<meta name="app-version" content="2026-05-23-v1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<meta name="theme-color" content="#1A3A2A">
+<style>
+  :root {
+    --cream: #FAF7F2;
+    --deep-green: #1A3A2A;
+    --mid-green: #2D6A4F;
+    --light-green: #74C69D;
+    --pale-green: #D8F3DC;
+    --amber: #E8A838;
+    --amber-light: #FDF3DC;
+    --sky: #5BA4CF;
+    --sky-light: #DCF0FF;
+    --blush: #E07C5A;
+    --blush-light: #FDE8E0;
+    --lavender: #8B6FBF;
+    --lavender-light: #EDE7F6;
+    --orange: #E8621A;
+    --orange-light: #FDF0E8;
+    --text-dark: #1C2B22;
+    --text-mid: #3D5244;
+    --text-light: #6B8A74;
+    --border: #E2EDE6;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: var(--cream);
+    color: var(--text-dark);
+    min-height: 100vh;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+    }
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--amber);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  /* ═══════════════════════════════
+     SHARED HEADER
+  ═══════════════════════════════ */
+  .app-header {
+    background: var(--deep-green);
+    padding: 44px 48px 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    overflow: hidden;
+  }
+
+  .app-header::before {
+    content: '';
+    position: absolute;
+    top: -80px; right: -80px;
+    width: 320px; height: 320px;
+    border-radius: 50%;
+    background: rgba(116,198,157,0.10);
+    pointer-events: none;
+  }
+
+  .app-header::after {
+    content: '';
+    position: absolute;
+    bottom: -60px; left: -40px;
+    width: 220px; height: 220px;
+    border-radius: 50%;
+    background: rgba(232,168,56,0.08);
+    pointer-events: none;
+  }
+
+  .header-inner {
+    position: relative; z-index: 1;
+    max-width: 960px; margin: 0 auto;
+  }
+
+  .header-tag {
+    display: inline-block;
+    background: rgba(116,198,157,0.18);
+    color: var(--light-green);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 5px 13px;
+    border-radius: 20px;
+    border: 1px solid rgba(116,198,157,0.25);
+    margin-bottom: 16px;
+  }
+
+  .header-inner h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 46px;
+    font-weight: 900;
+    color: #fff;
+    line-height: 1.05;
+    margin-bottom: 8px;
+  }
+
+  .header-inner h1 span { color: var(--amber); }
+
+  .header-sub {
+    font-size: 14px;
+    color: rgba(255,255,255,0.5);
+    font-weight: 300;
+    margin-bottom: 32px;
+  }
+
+  /* ═══════════════════════════════
+     TAB NAV
+  ═══════════════════════════════ */
+  .tab-nav {
+    display: flex;
+    gap: 4px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .tab-btn {
+    padding: 13px 28px;
+    border: none;
+    background: rgba(255,255,255,0.08);
+    color: rgba(255,255,255,0.5);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    cursor: pointer;
+    border-radius: 10px 10px 0 0;
+    transition: all 0.2s ease;
+  }
+
+  .tab-btn:hover { background: rgba(255,255,255,0.13); color: rgba(255,255,255,0.8); }
+
+  .tab-btn.active {
+    background: var(--cream);
+    color: var(--deep-green);
+    border-radius: 10px 10px 0 0;
+  }
+
+  .tab-btn .tab-icon { margin-right: 7px; font-size: 15px; }
+
+  /* ═══════════════════════════════
+     TAB PANELS
+  ═══════════════════════════════ */
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+  /* ═══════════════════════════════
+     WEEKEND PLAN STYLES
+  ═══════════════════════════════ */
+  .key-bar {
+    background: var(--deep-green);
+    border-top: 1px solid rgba(255,255,255,0.07);
+    padding: 16px 48px 22px;
+  }
+  .key-inner {
+    max-width: 960px; margin: 0 auto;
+    display: flex; gap: 22px; flex-wrap: wrap;
+  }
+  .key-item {
+    display: flex; align-items: center; gap: 7px;
+    font-size: 11.5px; color: rgba(255,255,255,0.5);
+  }
+  .key-dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
+
+  .wk-main {
+    max-width: 960px; margin: 0 auto;
+    padding: 44px 48px 80px;
+  }
+
+  .section-header {
+    display: flex; align-items: center; gap: 14px;
+    margin-bottom: 20px; margin-top: 44px;
+  }
+  .section-header:first-of-type { margin-top: 0; }
+
+  .section-label {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px; font-weight: 700;
+    color: var(--deep-green);
+  }
+  .section-date {
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--text-light);
+    padding: 4px 12px;
+    border: 1px solid var(--border);
+    border-radius: 20px; background: white;
+  }
+
+  .weekend-block {
+    border-radius: 14px; overflow: hidden;
+    box-shadow: 0 2px 12px rgba(26,58,42,0.06);
+    margin-bottom: 36px;
+    animation: slideUp 0.45s ease both;
+  }
+  @keyframes slideUp {
+    from { opacity:0; transform:translateY(14px); }
+    to   { opacity:1; transform:translateY(0); }
+  }
+
+  .day-row {
+    display: grid; grid-template-columns: 92px 1fr;
+    border-bottom: 1px solid var(--border);
+    background: white;
+  }
+  .day-row:last-child { border-bottom: none; }
+
+  .day-label-col {
+    padding: 18px 14px;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    border-right: 1px solid var(--border);
+  }
+  .day-name {
+    font-size: 10px; font-weight: 600;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--text-light); margin-bottom: 3px;
+  }
+  .day-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px; font-weight: 900;
+    line-height: 1; color: var(--deep-green);
+  }
+  .day-month {
+    font-size: 9px; color: var(--text-light);
+    text-transform: uppercase; letter-spacing: 1px; margin-top: 2px;
+  }
+
+  .day-content { padding: 16px 18px; }
+
+  .activity-group { display: flex; flex-direction: column; gap: 7px; }
+  .activity-pill { display: flex; align-items: flex-start; gap: 9px; }
+  .pill-dot { width:7px; height:7px; border-radius:50%; flex-shrink:0; margin-top:5px; }
+  .pill-text { font-size: 13px; line-height: 1.45; color: var(--text-mid); }
+  .pill-time { font-weight: 600; color: var(--text-dark); margin-right: 3px; }
+
+  .highlight-card {
+    border-radius: 9px; padding: 11px 14px;
+    display: flex; align-items: flex-start; gap: 11px;
+    margin-top: 10px;
+  }
+  .highlight-icon { font-size: 20px; flex-shrink: 0; line-height: 1; }
+  .highlight-title { font-size: 13.5px; font-weight: 600; color: var(--text-dark); margin-bottom: 2px; }
+  .highlight-detail { font-size: 12px; color: var(--text-mid); line-height: 1.4; }
+
+  /* colour variants */
+  .green .pill-dot { background: var(--mid-green); }
+  .green .highlight-card { background: #C7EDCD; }
+  .amber-v .pill-dot { background: var(--amber); }
+  .amber-v .highlight-card { background: #F7DFA5; }
+  .sky-v .pill-dot { background: var(--sky); }
+  .sky-v .highlight-card { background: #B8DEFF; }
+  .blush-v .pill-dot { background: var(--blush); }
+  .blush-v .highlight-card { background: #F5C4B2; }
+  .lavender-v .pill-dot { background: var(--lavender); }
+  .lavender-v .highlight-card { background: #D8CCF0; }
+
+  .wk-banner {
+    padding: 11px 18px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .wk-banner-label { font-size: 10px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.7); }
+  .wk-banner-tag { font-size: 10.5px; font-weight: 500; color: rgba(255,255,255,0.5); font-style: italic; }
+  .banner-green { background: var(--mid-green); }
+  .banner-amber { background: #C78A22; }
+  .banner-sky   { background: #3E82B0; }
+
+  .weather-notice {
+    background: linear-gradient(135deg, #1A3A2A, #2D6A4F);
+    border-radius: 13px; padding: 18px 22px;
+    display: flex; gap: 14px; align-items: flex-start;
+    margin-bottom: 36px; color: white;
+  }
+  .weather-icon { font-size: 26px; flex-shrink: 0; }
+  .weather-title { font-size: 11px; font-weight: 600; color: var(--light-green); margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.8px; }
+  .weather-body { font-size: 12.5px; color: rgba(255,255,255,0.72); line-height: 1.5; }
+
+  /* ═══════════════════════════════
+     DINNER PLAN STYLES
+  ═══════════════════════════════ */
+  .dn-main {
+    max-width: 960px; margin: 0 auto;
+    padding: 44px 48px 80px;
+  }
+
+  .dn-subnav {
+    display: flex; gap: 8px; margin-bottom: 32px; flex-wrap: wrap;
+    position: sticky;
+    top: 0;
+    background: var(--cream);
+    padding: 12px 0;
+    z-index: 50;
+    margin-top: -12px;
+  }
+  .dn-tab {
+    padding: 9px 20px;
+    border: 1.5px solid var(--border);
+    background: white;
+    color: var(--text-mid);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12.5px; font-weight: 600;
+    border-radius: 24px; cursor: pointer;
+    transition: all 0.18s;
+  }
+  .dn-tab:hover { border-color: var(--mid-green); color: var(--mid-green); }
+  .dn-tab.active { background: var(--mid-green); border-color: var(--mid-green); color: white; }
+
+  .dn-section { display: none; }
+  .dn-section.active { display: block; }
+
+  /* Meal cards */
+  .meals-grid { display: flex; flex-direction: column; gap: 14px; }
+
+  .meal-card {
+    background: white;
+    border-radius: 13px;
+    overflow: hidden;
+    box-shadow: 0 1px 8px rgba(26,58,42,0.05);
+    display: grid;
+    grid-template-columns: 76px 1fr;
+  }
+
+  .meal-day-col {
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    padding: 16px 10px;
+    border-right: 1px solid var(--border);
+  }
+  .meal-day-name {
+    font-size: 11px; font-weight: 700;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--text-mid); margin-bottom: 4px;
+  }
+  .meal-day-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px; font-weight: 900;
+    color: var(--deep-green); line-height: 1;
+  }
+  .meal-day-num-large {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px; font-weight: 900;
+    color: var(--deep-green); line-height: 1;
+    text-transform: lowercase;
+    font-style: italic;
+  }
+
+  .meal-body { padding: 14px 18px; }
+
+  .meal-title {
+    font-size: 14.5px; font-weight: 600;
+    color: var(--text-dark); margin-bottom: 4px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .meal-emoji { font-size: 17px; }
+
+  .meal-sides {
+    font-size: 12px; color: var(--text-light);
+    margin-bottom: 7px; font-style: italic;
+  }
+
+  .meal-serves {
+    font-size: 10.5px; color: var(--text-light);
+    letter-spacing: 0.5px;
+    margin-top: 8px;
+  }
+
+  .meal-tip {
+    font-size: 12px; color: var(--text-mid);
+    line-height: 1.45; background: var(--cream);
+    border-radius: 7px; padding: 8px 11px;
+  }
+
+  .meal-tag {
+    display: inline-block;
+    font-size: 10px; font-weight: 600;
+    letter-spacing: 1px; text-transform: uppercase;
+    padding: 2px 9px; border-radius: 10px;
+    margin-left: auto; flex-shrink: 0;
+  }
+  .tag-quick { background: var(--pale-green); color: var(--mid-green); }
+  .tag-prep  { background: var(--amber-light); color: #9A6800; }
+  .tag-easy  { background: var(--sky-light); color: #2A6090; }
+
+  /* dessert row */
+  .dessert-row {
+    display: flex; align-items: center; gap: 8px;
+    margin-top: 7px; font-size: 12px; color: var(--blush);
+    font-weight: 500;
+  }
+
+  /* Shopping list */
+  .shop-section { margin-bottom: 28px; }
+  .shop-section-title {
+    font-size: 11px; font-weight: 700;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--text-light); margin-bottom: 10px;
+    padding-bottom: 6px; border-bottom: 1px solid var(--border);
+  }
+  .shop-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+  .shop-item {
+    display: flex; align-items: center; gap: 10px;
+    background: white; border-radius: 9px;
+    padding: 10px 14px; cursor: pointer;
+    border: 1.5px solid var(--border);
+    transition: all 0.15s; user-select: none;
+  }
+  .shop-item:hover { border-color: var(--mid-green); }
+  .shop-item.checked { background: var(--pale-green); border-color: var(--light-green); }
+  .shop-item.checked .shop-name { text-decoration: line-through; color: var(--text-light); }
+  .shop-check {
+    width: 18px; height: 18px; border-radius: 50%;
+    border: 2px solid var(--border); background: white;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; font-size: 10px; color: transparent;
+    transition: all 0.15s;
+  }
+  .shop-item.checked .shop-check {
+    background: var(--mid-green); border-color: var(--mid-green); color: white;
+  }
+  .shop-name { font-size: 13px; color: var(--text-dark); flex: 1; }
+  .shop-qty { font-size: 11px; color: var(--text-light); }
+
+  /* ═══════════════════════════════
+     BEACH PACK STYLES
+  ═══════════════════════════════ */
+  .pack-subnav {
+    display: flex; gap: 8px; margin-bottom: 24px; flex-wrap: wrap;
+    position: sticky;
+    top: 0;
+    background: var(--cream);
+    padding: 12px 0;
+    z-index: 50;
+    margin-top: -12px;
+  }
+  .pack-tab {
+    padding: 9px 18px;
+    border: 1.5px solid var(--border);
+    background: white;
+    color: var(--text-mid);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12.5px; font-weight: 600;
+    border-radius: 24px; cursor: pointer;
+    transition: all 0.18s;
+  }
+  .pack-tab:hover { border-color: var(--blush); color: var(--blush); }
+  .pack-tab.active { background: var(--blush); border-color: var(--blush); color: white; }
+
+  .pack-section { display: none; }
+  .pack-section.active { display: block; }
+
+  .pack-categories { display: flex; flex-direction: column; gap: 14px; }
+
+  .pack-category {
+    background: white;
+    border-radius: 13px;
+    border: 1px solid var(--border);
+    overflow: hidden;
+    box-shadow: 0 1px 6px rgba(26,58,42,0.04);
+  }
+
+  .pack-category summary {
+    list-style: none;
+    cursor: pointer;
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    user-select: none;
+    transition: background 0.15s;
+  }
+  .pack-category summary::-webkit-details-marker { display: none; }
+  .pack-category summary:hover { background: var(--cream); }
+
+  .pack-cat-icon { font-size: 22px; line-height: 1; flex-shrink: 0; }
+  .pack-cat-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--deep-green);
+    flex: 1;
+  }
+  .pack-cat-count {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-light);
+    background: var(--cream);
+    border-radius: 12px;
+    padding: 3px 10px;
+    letter-spacing: 0.3px;
+  }
+  .pack-cat-count.complete {
+    background: var(--pale-green);
+    color: var(--mid-green);
+  }
+  .pack-cat-chevron {
+    font-size: 22px;
+    color: var(--text-light);
+    transition: transform 0.2s;
+    line-height: 1;
+    transform: rotate(90deg);
+    flex-shrink: 0;
+  }
+  .pack-category[open] .pack-cat-chevron { transform: rotate(-90deg); }
+
+  .pack-items {
+    padding: 0 16px 16px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+  }
+
+  .pack-item {
+    display: flex; align-items: center; gap: 10px;
+    background: var(--cream); border-radius: 9px;
+    padding: 10px 14px; cursor: pointer;
+    border: 1.5px solid transparent;
+    transition: all 0.15s; user-select: none;
+  }
+  .pack-item:hover { border-color: var(--blush); }
+  .pack-item.checked { background: #FDE8E0; border-color: var(--blush); }
+  .pack-item.checked .pack-name { text-decoration: line-through; color: var(--text-light); }
+  .pack-check {
+    width: 18px; height: 18px; border-radius: 50%;
+    border: 2px solid var(--border); background: white;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; font-size: 10px; color: transparent;
+    transition: all 0.15s;
+  }
+  .pack-item.checked .pack-check {
+    background: var(--blush); border-color: var(--blush); color: white;
+  }
+  .pack-name { font-size: 13px; color: var(--text-dark); flex: 1; line-height: 1.35; }
+  .pack-note { font-size: 11px; color: var(--text-light); font-style: italic; }
+
+  @media (max-width: 640px) {
+    .pack-items { grid-template-columns: 1fr; }
+    .pack-cat-title { font-size: 14px; }
+  }
+
+  /* ═══════════════════════════════
+     TACTILE TICK FEEDBACK
+  ═══════════════════════════════ */
+  .shop-item.ticking,
+  .pack-item.ticking,
+  .booking-item.ticking { transform: scale(0.96); transition: transform 0.12s ease; }
+
+  /* ═══════════════════════════════
+     BOOKING CONFIRMS
+  ═══════════════════════════════ */
+  .booking-bar {
+    display: flex; flex-wrap: wrap; gap: 8px;
+    margin-top: 12px;
+  }
+  .booking-item {
+    display: flex; align-items: center; gap: 8px;
+    background: white; border-radius: 9px;
+    padding: 8px 13px; cursor: pointer;
+    border: 1.5px solid var(--border);
+    font-size: 12px; font-weight: 500;
+    color: var(--text-mid);
+    transition: background 0.15s, border-color 0.15s;
+    user-select: none;
+  }
+  .booking-item:hover { border-color: var(--mid-green); }
+  .booking-item.confirmed {
+    background: var(--pale-green);
+    border-color: var(--light-green);
+    color: var(--mid-green);
+  }
+  .booking-check {
+    width: 16px; height: 16px; border-radius: 50%;
+    border: 2px solid var(--border); background: white;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; font-size: 9px; color: transparent;
+    transition: all 0.15s;
+  }
+  .booking-item.confirmed .booking-check {
+    background: var(--mid-green); border-color: var(--mid-green); color: white;
+  }
+
+  /* ═══════════════════════════════
+     QUICK NOTES
+  ═══════════════════════════════ */
+  .notes-wrap {
+    margin-top: 14px;
+    background: white; border-radius: 9px;
+    border: 1.5px solid var(--border);
+    overflow: hidden;
+  }
+  .notes-label {
+    font-size: 10px; font-weight: 700;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--text-light);
+    padding: 9px 13px 0;
+    display: block;
+  }
+  .notes-field {
+    width: 100%; border: none; outline: none; resize: none;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12.5px; color: var(--text-dark);
+    background: transparent;
+    padding: 6px 13px 10px;
+    min-height: 56px;
+    line-height: 1.5;
+  }
+  .notes-field::placeholder { color: var(--text-light); }
+
+  /* ═══════════════════════════════
+     UPDATE BANNER
+  ═══════════════════════════════ */
+  #update-banner {
+    display: none;
+    position: fixed; top: 0; left: 0; right: 0;
+    background: var(--amber); color: var(--deep-green);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px; font-weight: 600;
+    padding: 12px 16px;
+    text-align: center;
+    z-index: 1000;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  }
+  #update-banner.show { display: block; }
+  #update-banner button {
+    margin-left: 12px;
+    background: var(--deep-green); color: white;
+    border: none; border-radius: 14px;
+    padding: 4px 14px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px; font-weight: 700;
+    cursor: pointer;
+  }
+
+  /* ═══════════════════════════════
+     PULL-TO-REFRESH (weather tab only)
+  ═══════════════════════════════ */
+  #ptr-indicator {
+    position: fixed;
+    top: 0; left: 50%;
+    transform: translateX(-50%) translateY(-64px);
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    background: var(--deep-green);
+    box-shadow: 0 3px 12px rgba(26,58,42,0.22);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px; line-height: 1;
+    z-index: 200;
+    opacity: 0;
+    pointer-events: none;
+    user-select: none;
+    transition: transform 0.22s ease, opacity 0.22s ease;
+  }
+  #ptr-indicator.ptr-pulling {
+    opacity: 1;
+    transition: none; /* follow finger with no easing */
+  }
+  #ptr-indicator.ptr-releasing {
+    transform: translateX(-50%) translateY(16px);
+    opacity: 1;
+    transition: transform 0.22s ease, opacity 0.22s ease;
+  }
+  #ptr-indicator.ptr-loading {
+    transform: translateX(-50%) translateY(16px);
+    opacity: 1;
+    animation: ptr-spin 0.75s linear infinite;
+    transition: none;
+  }
+  #ptr-indicator.ptr-done {
+    transform: translateX(-50%) translateY(-64px);
+    opacity: 0;
+    transition: transform 0.3s ease 0.5s, opacity 0.3s ease 0.5s;
+  }
+  @keyframes ptr-spin { to { rotate: 360deg; } }
+
+  /* ═══════════════════════════════
+     TOAST
+  ═══════════════════════════════ */
+  #fp-toast {
+    position: fixed; bottom: 24px; left: 50%;
+    transform: translateX(-50%) translateY(80px);
+    background: var(--deep-green); color: white;
+    font-size: 12.5px; font-weight: 500;
+    padding: 10px 20px; border-radius: 24px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+    z-index: 9999; pointer-events: none;
+    transition: transform 0.25s ease, opacity 0.25s ease;
+    opacity: 0; white-space: nowrap;
+  }
+  #fp-toast.show {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+  }
+
+  /* Tips */
+  .tips-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .tip-card {
+    background: white; border-radius: 13px;
+    padding: 18px 20px;
+    box-shadow: 0 1px 8px rgba(26,58,42,0.04);
+  }
+  .tip-card-title {
+    font-size: 13.5px; font-weight: 600;
+    color: var(--deep-green); margin-bottom: 10px;
+  }
+  .tip-card ul { padding-left: 16px; }
+  .tip-card li {
+    font-size: 12.5px; color: var(--text-mid);
+    line-height: 1.5; margin-bottom: 5px;
+  }
+
+  /* ═══════════════════════════════
+     SHARED FOOTER
+  ═══════════════════════════════ */
+  .app-footer {
+    text-align: center;
+    padding: 0 0 40px;
+    font-size: 11.5px;
+    color: var(--text-light);
+  }
+
+  @media (max-width: 640px) {
+    .app-header { padding: 22px 16px 0; }
+    .header-inner h1 { font-size: 30px; }
+    .header-sub { margin-bottom: 22px; }
+    .header-tag { margin-bottom: 12px; }
+    .wk-main, .dn-main { padding: 24px 16px 60px; }
+    .key-bar { padding: 12px 16px 16px; }
+    .key-inner { gap: 12px; }
+    .key-item { font-size: 10.5px; }
+    .shop-grid { grid-template-columns: 1fr; }
+    .tips-grid { grid-template-columns: 1fr; }
+    .tab-nav {
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+    }
+    .tab-nav::-webkit-scrollbar { display: none; }
+    .tab-btn { padding: 10px 14px; font-size: 12px; flex-shrink: 0; }
+    .tab-btn .tab-label-long { display: none; }
+    .tab-btn .tab-label-short { display: inline; }
+    .meal-card { grid-template-columns: 64px 1fr; }
+    .day-row { grid-template-columns: 72px 1fr; }
+    .day-num { font-size: 22px; }
+    .wk-banner { padding: 10px 14px; flex-wrap: wrap; gap: 4px; }
+    .wk-banner-tag { font-size: 10px; }
+    .section-header { flex-wrap: wrap; }
+    .header-inner h1 { line-height: 1.1; }
+    .glance-grid { grid-template-columns: 1fr !important; }
+    .wx-days-grid { grid-template-columns: repeat(2, 1fr) !important; }
+  }
+
+  .tab-label-short { display: none; }
+  .tab-label-long { display: inline; }
+
+  @media print {
+    body { background: white; color: black; font-size: 11pt; }
+    .app-header { position: static; background: white; color: black; padding: 0 0 16pt; border-bottom: 2pt solid #1A3A2A; }
+    .app-header::before, .app-header::after { display: none; }
+    .header-inner h1 { color: black; font-size: 22pt; }
+    .header-inner h1 span { color: #1A3A2A; }
+    .header-sub { color: #555; }
+    .header-tag { background: none; color: #1A3A2A; border-color: #1A3A2A; }
+    .tab-nav, .key-bar, .dn-subnav, .app-footer, #weather, button { display: none !important; }
+    .tab-panel { display: block !important; page-break-before: always; }
+    .tab-panel#weekends { page-break-before: avoid; }
+    .weekend-block, .meal-card, .tip-card {
+      box-shadow: none;
+      border: 1pt solid #ccc;
+      page-break-inside: avoid;
+    }
+    .shop-item { border: 1pt solid #999; background: white !important; }
+    .shop-item .shop-check { border-color: #333; }
+    .pack-item { border: 1pt solid #999 !important; background: white !important; page-break-inside: avoid; }
+    .pack-item .pack-check { border-color: #333 !important; }
+    .pack-category { box-shadow: none; border: 1pt solid #ccc; page-break-inside: avoid; }
+    .pack-category[open] > summary,
+    .pack-category > summary { background: #eee !important; }
+    .pack-category > .pack-items { display: grid !important; }
+    .pack-category:not([open]) > .pack-items { display: grid !important; }
+    .pack-cat-chevron { display: none; }
+    .weather-notice { background: white !important; color: black; border: 1pt solid #1A3A2A; }
+    .weather-notice * { color: black !important; }
+    .wk-banner { background: #eee !important; color: black; }
+    .wk-banner * { color: black !important; }
+    a { color: black; text-decoration: underline; }
+    a[href]::after { content: " (" attr(href) ")"; font-size: 8pt; color: #555; }
+    a[href^="#"]::after { content: ""; }
+  }
+</style>
+</head>
+<body>
+
+<div id="update-banner" role="alert">
+  📲 A new version is available.
+  <button onclick="window.location.reload(true)">Refresh now</button>
+</div>
+
+<!-- ═══════════════ SHARED HEADER ═══════════════ -->
+<div class="app-header">
+  <div class="header-inner">
+    <div class="header-tag">Family Planner</div>
+    <h1>May <span>2026</span></h1>
+    <p class="header-sub">Gabriel &amp; Lucas · Weekends &amp; Dinners</p>
+
+    <div class="tab-nav" role="tablist" aria-label="Planner sections">
+      <button class="tab-btn active" role="tab" aria-selected="true" aria-controls="weekends" id="tab-weekends" onclick="switchTab('weekends', this)">
+        <span class="tab-icon" aria-hidden="true">🗓</span><span class="tab-label-long">Weekend Plan</span><span class="tab-label-short">Weekends</span>
+      </button>
+      <button class="tab-btn" role="tab" aria-selected="false" aria-controls="dinners" id="tab-dinners" onclick="switchTab('dinners', this)">
+        <span class="tab-icon" aria-hidden="true">🍽</span><span class="tab-label-long">Dinner Menu</span><span class="tab-label-short">Dinners</span>
+      </button>
+      <button class="tab-btn" role="tab" aria-selected="false" aria-controls="beachpack" id="tab-beachpack" onclick="switchTab('beachpack', this)">
+        <span class="tab-icon" aria-hidden="true">🎒</span><span class="tab-label-long">Day Packs</span><span class="tab-label-short">Packs</span>
+      </button>
+      <button class="tab-btn" role="tab" aria-selected="false" aria-controls="weather" id="tab-weather" onclick="switchTab('weather', this)">
+        <span class="tab-icon" aria-hidden="true">🌤</span><span class="tab-label-long">Forecast</span><span class="tab-label-short">Weather</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ WEEKEND TAB ═══════════════ -->
+<div id="weekends" class="tab-panel active" role="tabpanel" aria-labelledby="tab-weekends">
+
+  <div class="key-bar">
+    <div class="key-inner">
+      <div class="key-item"><div class="key-dot" style="background:#2D6A4F"></div>Standing activity</div>
+      <div class="key-item"><div class="key-dot" style="background:#E8A838"></div>Zoo / outdoor</div>
+      <div class="key-item"><div class="key-dot" style="background:#5BA4CF"></div>Bowling</div>
+      <div class="key-item"><div class="key-dot" style="background:#E07C5A"></div>Friends / party</div>
+      <div class="key-item"><div class="key-dot" style="background:#8B6FBF"></div>Tournament / theatre</div>
+      <div class="key-item"><div class="key-dot" style="background:#E8621A"></div>Beach / bank holiday</div>
+    </div>
+  </div>
+
+  <div class="wk-main">
+
+    <div id="all-past-notice" style="display:none;background:white;border:1px solid var(--border);border-radius:13px;padding:32px 28px;text-align:center;margin-bottom:28px;">
+      <div style="font-size:40px;margin-bottom:10px;" aria-hidden="true">✨</div>
+      <div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--deep-green);margin-bottom:6px;">All wrapped up</div>
+      <div style="font-size:13px;color:var(--text-mid);line-height:1.55;max-width:440px;margin:0 auto;">Every planned day on this planner has now passed. Time for the next chapter — and the next plan.</div>
+    </div>
+
+    <!-- HEATWAVE ALERT -->
+    <div data-block-end-date="2026-05-25" style="background:linear-gradient(135deg,#E8621A,#C95820);border-radius:13px;padding:18px 22px;margin-bottom:20px;color:white;display:flex;gap:14px;align-items:flex-start;box-shadow:0 3px 14px rgba(232,98,26,0.18);">
+      <div style="font-size:28px;line-height:1;flex-shrink:0;" aria-hidden="true">🌡️</div>
+      <div style="flex:1;">
+        <div style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.85);margin-bottom:5px;">Met Office Heatwave Alert</div>
+        <div style="font-size:14.5px;font-weight:600;line-height:1.4;margin-bottom:6px;">Bank holiday weekend will be exceptionally hot — possible UK May temperature record (32.8°C).</div>
+        <div style="font-size:12.5px;color:rgba(255,255,255,0.9);line-height:1.55;">Sat 28°C · <strong style="color:#FFE0B2;">Sun beach day 30°C</strong> · Mon up to 33°C inland. <strong>Heat-safety basics:</strong> dawn start for the beach, shade between 11–3, double water, hats indoors and out, watch the boys for flushed cheeks or grumpiness — they overheat faster than adults.</div>
+      </div>
+    </div>
+
+    <div class="weather-notice">
+      <div class="weather-icon" aria-hidden="true">🌦</div>
+      <div>
+        <div class="weather-title">Weather Outlook</div>
+        <div class="weather-body">
+          <div data-date="2026-05-16" style="margin-bottom:8px;"><span style="display:inline-flex;align-items:flex-start;gap:6px;">🌥 <span><strong style="color:white">16 May</strong> — Chilly, ~13°C · light patchy rain (~1mm) · Theodore's party outdoors — bring layers and a rain jacket</span></span></div>
+          <div data-date="2026-05-17" style="margin-bottom:8px;"><span style="display:inline-flex;align-items:flex-start;gap:6px;">🌧 <span><strong style="color:white">17 May</strong> — ~15°C · patchy rain likely · Bowling indoors works either way ✓</span></span></div>
+          <div data-date="2026-05-23" style="margin-bottom:8px;"><span style="display:inline-flex;align-items:flex-start;gap:6px;">🌡 <span><strong style="color:white">23 May</strong> — Heatwave incoming · ~25–28°C, dry &amp; sunny · Rafa's party — shade, hats, plenty of water</span></span></div>
+          <div data-date="2026-05-24" style="margin-bottom:8px;"><span style="display:inline-flex;align-items:flex-start;gap:6px;">🔥 <span><strong style="color:white">24 May</strong> — Sandbanks beach day · forecast ~28–30°C · leave 7:30am · arrive before 9am · off sand by 12:30</span></span></div>
+          <div data-date="2026-05-25" style="margin-bottom:8px;"><span style="display:inline-flex;align-items:flex-start;gap:6px;">🌞 <span><strong style="color:white">25 May</strong> — Bank Holiday · possible record-breaking 30–33°C · cool garden morning · Heathrow T3 pickup 15:30</span></span></div>
+          <div data-date="2026-05-30" style="margin-bottom:8px;"><span style="display:inline-flex;align-items:flex-start;gap:6px;">🍺 <span><strong style="color:white">30 May</strong> — Beyond reliable forecast window · Craven Arms garden ideal in dry weather · check from ~27 May</span></span></div>
+          <div data-date="2026-05-31"><span style="display:inline-flex;align-items:flex-start;gap:6px;">🦒 <span><strong style="color:white">31 May</strong> — Too far out for a specific forecast · Marwell full day · check from ~28 May</span></span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WEEKEND 1 -->
+    <div data-block-end-date="2026-05-17" class="section-header">
+      <div class="section-label">Weekend One</div>
+      <div class="section-date">16–17 May</div>
+    </div>
+
+    <div data-block-end-date="2026-05-17" class="weekend-block">
+      <div class="wk-banner banner-green">
+        <div class="wk-banner-label">Saturday + Sunday</div>
+        <div class="wk-banner-tag">🎂 Theodore's party · 🎭 Matilda · 🎳 Bowling Sunday</div>
+      </div>
+
+      <div data-date="2026-05-16" class="day-row lavender-v">
+        <div class="day-label-col">
+          <div class="day-name">Sat</div>
+          <div class="day-num">16</div>
+          <div class="day-month">May</div>
+        </div>
+        <div class="day-content">
+          <div class="activity-group">
+            <div class="activity-pill"><div class="pill-dot"></div><div class="pill-text"><span class="pill-time">9:45</span> Lucas — Little Kickers at <a href="https://www.google.com/maps/search/?api=1&query=Old+Basing+Infant+School" target="_blank" rel="noopener" style="color:var(--mid-green);text-decoration:underline;">Old Basing Infant School</a> · <strong>Fernanda taking</strong> <span style="color:var(--text-light);font-style:italic">(Gabriel skips football)</span></div></div>
+            <div class="activity-pill"><div class="pill-dot"></div><div class="pill-text"><span class="pill-time">10:15</span> Gabriel — Kumon · done by ~11:15</div></div>
+          </div>
+          <div class="highlight-card">
+            <div class="highlight-icon" aria-hidden="true">🛒</div>
+            <div>
+              <div class="highlight-title">Before the party — <a href="https://www.google.com/maps/search/?api=1&query=Tesco+Chineham+Basingstoke" target="_blank" rel="noopener" style="color:var(--mid-green);text-decoration:underline;">Tesco Chineham</a></div>
+              <div class="highlight-detail">Quick stop on the way to grab a gift for Theodore. Tight window — straight from Kumon (~11:15) and Theodore's starts at 10:30, so aim to be in and out in 15 min. <strong>Tip:</strong> if possible, do this Friday evening to take the pressure off Saturday morning.</div>
+            </div>
+          </div>
+          <div class="highlight-card" style="margin-top:8px">
+            <div class="highlight-icon" aria-hidden="true">🎂</div>
+            <div>
+              <div class="highlight-title">10:30–13:00 — Theodore's birthday party</div>
+              <div class="highlight-detail"><a href="https://www.google.com/maps/search/?api=1&query=Old+Basing+Recreation+Ground+RG24+7DA" target="_blank" rel="noopener" style="color:var(--mid-green);text-decoration:underline;">Old Basing Recreation Ground, RG24 7DA</a>. Gabriel joins late (after Kumon + Tesco — arrive ~11:30). Outdoor venue, so dress for the weather. Both boys can go.<br><br><strong>🚗 Leave Tesco by 11:15</strong> — Chineham to Old Basing Rec is ~10 min. Park on Crown Lane / The Street.</div>
+            </div>
+          </div>
+          <div class="highlight-card" style="margin-top:8px">
+            <div class="highlight-icon" aria-hidden="true">🎭</div>
+            <div>
+              <div class="highlight-title">Afternoon — Matilda the Musical (Gabriel only)</div>
+              <div class="highlight-detail"><a href="https://www.mayflower.org.uk/" target="_blank" rel="noopener" style="color:var(--mid-green);text-decoration:underline;">Mayflower Theatre, Southampton — SO15 1GE</a>. Lucas stays with Vanessa. <strong>Bring snacks and water</strong> for the journey. <a href="https://www.google.com/maps/search/?api=1&query=Mayflower+Theatre+Southampton+SO15+1GE" target="_blank" rel="noopener" style="color:var(--mid-green);text-decoration:underline;">📍 Open in Maps</a><br><br><strong>🚗 Leave Old Basing by 13:00</strong> — drive is ~45 min via the M3. Foyer doors open 1 hour before curtain; aim to arrive ~45 min early so there's time to park (West Park Road or Grosvenor Square multi-storeys, both 5 min walk), bag check, and seat Gabriel without rushing. <strong>Check your exact show time on the ticket.</strong></div>
+            </div>
+          </div>
+          <div class="notes-wrap">
+            <label class="notes-label" for="notes-w1sat">Notes</label>
+            <textarea class="notes-field" id="notes-w1sat" data-notes-id="notes-w1sat" placeholder="Show time, parking, Theodore's gift sorted?…" oninput="saveNote(this)"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <div data-date="2026-05-17" class="day-row sky-v">
+        <div class="day-label-col">
+          <div class="day-name">Sun</div>
+          <div class="day-num">17</div>
+          <div class="day-month">May</div>
+        </div>
+        <div class="day-content">
+          <div class="activity-group">
+            <div class="activity-pill"><div class="pill-dot"></div><div class="pill-text"><span class="pill-time">8:30–10:00</span> Football game</div></div>
+            <div class="activity-pill"><div class="pill-dot"></div><div class="pill-text"><span class="pill-time">11:00</span> Mass</div></div>
+          </div>
+          <div class="highlight-card">
+            <div class="highlight-icon" aria-hidden="true">🎳</div>
+            <div>
+              <div class="highlight-title">Afternoon — Bowling with Kezia &amp; Rowan</div>
+              <div class="highlight-detail">Patchy rain likely (~15°C) — a tidy excuse for an indoor afternoon either way. Kezia and Rowan join you at the tenpin centre. The boys will love having a friend along. <strong>Book lanes in advance</strong> for a group of 4+. <a href="https://www.google.com/maps/search/?api=1&query=tenpin+bowling+Basingstoke" target="_blank" rel="noopener" style="color:var(--mid-green);text-decoration:underline;">📍 Find a centre</a></div>
+            </div>
+          </div>
+          <div class="booking-bar">
+            <div class="booking-item" data-confirm-id="bowling-lanes" tabindex="0" role="checkbox" aria-checked="false" onclick="toggleConfirm(this)" onkeydown="confirmKey(event,this)">
+              <div class="booking-check" aria-hidden="true">✓</div>Bowling lanes booked
+            </div>
+          </div>
+          <div class="notes-wrap">
+            <label class="notes-label" for="notes-w1sun">Notes</label>
+            <textarea class="notes-field" id="notes-w1sun" data-notes-id="notes-w1sun" placeholder="Lane booking ref, Kezia's number, anything…" oninput="saveNote(this)"></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WEEKEND 2 -->
+    <div data-block-end-date="2026-05-24" class="section-header">
+      <div class="section-label">Weekend Two</div>
+      <div class="section-date">23–24 May</div>
+    </div>
+
+    <div data-block-end-date="2026-05-24" class="weekend-block">
+      <div class="wk-banner banner-amber">
+        <div class="wk-banner-label">Saturday + Sunday</div>
+        <div class="wk-banner-tag">🎂 Rafa's birthday party · 🏖 Sandbanks beach Sunday</div>
+      </div>
+
+      <div data-date="2026-05-23" class="day-row amber-v">
+        <div class="day-label-col">
+          <div class="day-name">Sat</div>
+          <div class="day-num">23</div>
+          <div class="day-month">May</div>
+        </div>
+        <div class="day-content">
+          <div class="activity-group">
+            <div class="activity-pill"><div class="pill-dot"></div><div class="pill-text"><span class="pill-time">9:00–10:00</span> Gabriel — football <span style="color:var(--text-light);font-style:italic">(Lucas skips Little Kickers)</span></div></div>
+            <div class="activity-pill"><div class="pill-dot"></div><div class="pill-text"><span class="pill-time">10:15</span> Gabriel — Kumon · done by ~11:15</div></div>
+          </div>
+          <div class="highlight-card">
+            <div class="highlight-icon" aria-hidden="true">🎂</div>
+            <div>
+              <div class="highlight-title">Afternoon — Rafa's birthday party 🍕</div>
+              <div class="highlight-detail">At Rafa's place. Pizza is sorted there, so the family dinner at home is dumplings instead (see Dinner Menu tab). <strong>Don't forget a gift</strong> — pick one up earlier in the week to avoid a last-minute scramble. Both boys go.<br><br><strong>🔥 Hot day (~28°C):</strong> sun hats on the boys, factor 50 before leaving, light cotton clothes, refillable water bottle each. Check with Rafa's parents if the party is mostly outdoors — if so, suggest the boys keep tops on between dashes for shade.</div>
+            </div>
+          </div>
+          <div class="activity-pill" style="margin-top:12px;background:#FDE8E0;border-radius:9px;padding:10px 14px;">
+            <div class="pill-dot" style="background:var(--blush);margin-top:6px;"></div>
+            <div class="pill-text"><span class="pill-time">Evening</span> Load the car &amp; freeze ice packs ahead of Sunday's beach run · <a href="#" onclick="event.preventDefault(); document.getElementById('tab-beachpack').click(); return false;" style="color:var(--blush);text-decoration:underline;font-weight:600;">→ Beach checklist</a></div>
+          </div>
+          <div class="notes-wrap">
+            <label class="notes-label" for="notes-w2sat">Notes</label>
+            <textarea class="notes-field" id="notes-w2sat" data-notes-id="notes-w2sat" placeholder="Rafa's gift, party address, car loaded?…" oninput="saveNote(this)"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <div data-date="2026-05-24" class="day-row blush-v">
+        <div class="day-label-col">
+          <div class="day-name">Sun</div>
+          <div class="day-num">24</div>
+          <div class="day-month">May</div>
+        </div>
+        <div class="day-content">
+          <div class="activity-group">
+            <div class="activity-pill"><div class="pill-dot"></div><div class="pill-text"><span style="color:var(--text-light);font-style:italic">No football, no Mass — clear day for the beach</span></div></div>
+          </div>
+          <div class="highlight-card">
+            <div class="highlight-icon" aria-hidden="true">🏖</div>
+            <div>
+              <div class="highlight-title">Beach day — <a href="https://www.sandbanksbeach.co.uk/" target="_blank" rel="noopener" style="color:var(--blush);text-decoration:underline;font-weight:600;">Sandbanks Beach, Poole</a></div>
+              <div class="highlight-detail">One of the best beaches in Britain — <strong>fine white sand, shallow water, Blue Flag</strong> every year since 1987, lifeguards on duty, café and beach shop on site, toilets, and a large 532-space pay-and-display car park right next to the beach. Drive is ~1h 10m via the A31/A348.<br><br><strong>🔥 Heatwave day — forecast ~28–30°C:</strong> the early start is critical. Sun is brutal by 11am, the sand scorching underfoot, and the car park will be full by mid-morning. <strong>🚗 Leave home 7:30–8:00am</strong> — on the sand by ~9:00 while it's still pleasant. Plan to be in the shade or back in the car by ~12:30 before the worst heat and the queue out.<br><br><strong>🌊 Tide note:</strong> Sandbanks has a gently shelving beach — at low tide there's a huge expanse of sand, perfect for digging and paddling. The Solent sea will be warmer than the Channel (~15–16°C). <a href="https://www.google.com/maps/search/?api=1&query=Sandbanks+Beach+Poole+BH13+7QQ" target="_blank" rel="noopener" style="color:var(--blush);text-decoration:underline;">📍 Open in Maps</a><br><br><strong>🅿️ Parking: pay-and-display, no pre-booking needed</strong> — 532 spaces at Banks Road BH13 7QQ, open 24hrs. Pay via cash, JustPark app or RingGo. Arrive before 9am to guarantee a space; in a heatwave it fills by late morning. No need to book ahead — just arrive early.<br><br><strong>☀️ Heat safety with the boys:</strong> reapply factor 50 every 90 min and after every dip, UV swim tops stay on, parasol or shelter for naps, water every 15–20 min (not just when they ask). Watch for red cheeks, headaches, unusual quiet — first signs of heat stress.</div>
+            </div>
+          </div>
+          <div class="highlight-card" style="margin-top:8px;background:#FDE8E0;">
+            <div class="highlight-icon" aria-hidden="true">🎒</div>
+            <div>
+              <div class="highlight-title">Pack the car Saturday evening</div>
+              <div class="highlight-detail">Sunday is an early start (leaving 7:30am), so load the car the night before — Sunday morning is just cool bag in, kids in, drive. <strong><a href="#" onclick="event.preventDefault(); document.getElementById('tab-beachpack').click(); return false;" style="color:var(--blush);text-decoration:underline;font-weight:600;">→ Open the Day Packs tab</a></strong> for the tickable Beach checklist by category.</div>
+            </div>
+          </div>
+          <div class="notes-wrap">
+            <label class="notes-label" for="notes-w2sun">Notes</label>
+            <textarea class="notes-field" id="notes-w2sun" data-notes-id="notes-w2sun" placeholder="Tide time, parking app ready, anything to pack last-minute…" oninput="saveNote(this)"></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BANK HOLIDAY -->
+    <div data-block-end-date="2026-05-25" class="section-header">
+      <div class="section-label">Bank Holiday</div>
+      <div class="section-date">25 May</div>
+    </div>
+
+    <div data-block-end-date="2026-05-25" class="weekend-block">
+      <div class="wk-banner" style="background:#C95820;">
+        <div class="wk-banner-label">Monday</div>
+        <div class="wk-banner-tag">🏡 Garden / paddling pool AM · ✈️ Heathrow T3 pickup 15:30</div>
+      </div>
+      <div data-date="2026-05-25" class="day-row" style="grid-template-columns: 92px 1fr;">
+        <div class="day-label-col" style="background:#FDF0E8;">
+          <div class="day-name">Mon</div>
+          <div class="day-num">25</div>
+          <div class="day-month">May</div>
+        </div>
+        <div class="day-content">
+          <div style="font-size:13px;color:var(--text-mid);line-height:1.55;padding:6px 0 4px;">
+            <strong style="color:var(--orange);">Spring Bank Holiday</strong> — schools, nurseries and most workplaces closed. With temperatures forecast to peak at 30–33°C (potentially a UK May record), today is built around the heat: cool morning at home, then the Heathrow run timed to dodge the worst of it.
+          </div>
+          <div class="highlight-card" style="background:#FDF0E8;margin-top:10px;">
+            <div class="highlight-icon" aria-hidden="true">💦</div>
+            <div>
+              <div class="highlight-title">Morning — Garden &amp; paddling pool</div>
+              <div class="highlight-detail">After Sunday's big beach day, a slow start at home is exactly right — and in 30°C heat, indoor soft play would be a sweat-box. Set up the paddling pool early while it's still cool, get a parasol or gazebo over it for shade, ice lollies on rotation. The boys will happily potter for hours.<br><br><strong>Indoor backup:</strong> if it's already too hot to be outside by mid-morning, close curtains on the sunny side of the house, set up a fan, calm playtime indoors. Don't take them anywhere unnecessary in the peak heat.</div>
+            </div>
+          </div>
+          <div class="highlight-card" style="background:var(--sky-light);margin-top:8px">
+            <div class="highlight-icon" aria-hidden="true">✈️</div>
+            <div>
+              <div class="highlight-title">15:30 — Pick up Fernanda · <a href="https://www.google.com/maps/search/?api=1&query=Heathrow+Terminal+3" target="_blank" rel="noopener" style="color:#3E82B0;text-decoration:underline;">Heathrow T3</a></div>
+              <div class="highlight-detail"><strong>LATAM LA8084</strong> · GRU → LHR · scheduled arrival ~14:30 · pickup at 15:30 allows ~1 hour for immigration, bags and walk-out (LATAM uses T3).<br><br><strong>🚗 Basingstoke → Heathrow T3 ~1h</strong> via the M3/M25 — bank-holiday afternoon traffic could push it to 1h 30m+ (everyone heading home). Leave home by ~13:45 to arrive ~14:45 with a buffer.<br><br><strong>🔥 Heat in the car:</strong> air-con on full from the start, water bottles within reach of the boys, plain-sun shades on the rear windows. Lucas's car seat strap buckle can scald — check before clipping him in. If the car is parked in sun, open all doors for 60 seconds before getting in.<br><br><strong>📱 Park in the Short Stay car park</strong> if the flight is on time and luggage is quick; switch to the <strong>Free Waiting Area</strong> if she's delayed (free, text-message-to-driver based, ~5 min drive from T3). <a href="https://www.heathrow.com/arrivals" target="_blank" rel="noopener" style="color:#3E82B0;text-decoration:underline;">🛬 Live arrivals</a> · <a href="https://www.latamairlines.com/" target="_blank" rel="noopener" style="color:#3E82B0;text-decoration:underline;">LATAM status</a></div>
+            </div>
+          </div>
+          <div class="notes-wrap">
+            <label class="notes-label" for="notes-bh">Notes</label>
+            <textarea class="notes-field" id="notes-bh" data-notes-id="notes-bh" placeholder="Flight number confirmed, parking plan, snacks for car…" oninput="saveNote(this)"></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div data-block-end-date="2026-05-31" class="section-header">
+      <div class="section-label">Weekend Three</div>
+      <div class="section-date">30–31 May</div>
+    </div>
+
+    <div data-block-end-date="2026-05-31" class="weekend-block">
+      <div class="wk-banner banner-green">
+        <div class="wk-banner-label">Saturday + Sunday</div>
+        <div class="wk-banner-tag">Tournament · Craven Arms lunch with Vanessa &amp; Marcos · Marwell Zoo (Sun)</div>
+      </div>
+
+      <div data-date="2026-05-30" class="day-row lavender-v">
+        <div class="day-label-col">
+          <div class="day-name">Sat</div>
+          <div class="day-num">30</div>
+          <div class="day-month">May</div>
+        </div>
+        <div class="day-content">
+          <div class="activity-group">
+            <div class="activity-pill"><div class="pill-dot"></div><div class="pill-text"><span class="pill-time">Morning</span> Gabriel — tournament at <a href="https://www.google.com/maps/search/?api=1&query=Aldermaston+Recreation+Ground" target="_blank" rel="noopener" style="color:var(--mid-green);text-decoration:underline;">Aldermaston Rec Ground</a> · Lucas attends <span style="color:var(--text-light);font-style:italic">(Little Kickers skipped)</span></div></div>
+            <div class="activity-pill"><div class="pill-dot"></div><div class="pill-text"><span class="pill-time">~Early afternoon</span> Tournament wraps up</div></div>
+          </div>
+          <div class="highlight-card">
+            <div class="highlight-icon" aria-hidden="true">🍺</div>
+            <div>
+              <div class="highlight-title">Lunch — <a href="https://www.thecravenarmsenborne.com/table-booking-form" target="_blank" rel="noopener" style="color:var(--mid-green);text-decoration:underline;">The Craven Arms, Enborne</a></div>
+              <div class="highlight-detail">~20 min from Aldermaston. Large garden, kids' play area, heated tipi. Saturday food served 12 noon–8:30pm. <strong>Book a table online</strong> — or call 01635 253336. Good for a group with young kids. <a href="https://www.google.com/maps/search/?api=1&query=The+Craven+Arms+Enborne+Newbury" target="_blank" rel="noopener" style="color:var(--mid-green);text-decoration:underline;">📍 Open in Maps</a><br><br><strong>🚗 Leave Aldermaston ~12:40</strong> for a 13:00 booking — drive is ~20 min via the A4. Coordinate with Vanessa &amp; Marcos so everyone arrives together.</div>
+            </div>
+          </div>
+          <div class="highlight-card" style="margin-top:8px">
+            <div class="highlight-icon" aria-hidden="true">🛝</div>
+            <div>
+              <div class="highlight-title">After lunch — <a href="https://www.google.com/maps/search/?api=1&query=Silchester+Playground+Hampshire" target="_blank" rel="noopener" style="color:var(--mid-green);text-decoration:underline;">Silchester Playground</a></div>
+              <div class="highlight-detail">10 min from The Craven Arms. Open green space, good playground, and a short walk to the Roman walls nearby if the adults fancy a wander. Free, no booking needed.<br><br><strong>🚗 ~10 min drive</strong> via Aldermaston Rd / Silchester Rd. Easy hop once lunch wraps.</div>
+            </div>
+          </div>
+          <div class="booking-bar">
+            <div class="booking-item" data-confirm-id="craven-arms-table" tabindex="0" role="checkbox" aria-checked="false" onclick="toggleConfirm(this)" onkeydown="confirmKey(event,this)">
+              <div class="booking-check" aria-hidden="true">✓</div>Craven Arms table booked
+            </div>
+          </div>
+          <div class="notes-wrap">
+            <label class="notes-label" for="notes-w3sat">Notes</label>
+            <textarea class="notes-field" id="notes-w3sat" data-notes-id="notes-w3sat" placeholder="Booking ref, tournament kick-off time, parking…" oninput="saveNote(this)"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <div data-date="2026-05-31" class="day-row amber-v">
+        <div class="day-label-col">
+          <div class="day-name">Sun</div>
+          <div class="day-num">31</div>
+          <div class="day-month">May</div>
+        </div>
+        <div class="day-content">
+          <div class="activity-group">
+            <div class="activity-pill"><div class="pill-dot"></div><div class="pill-text"><span style="color:var(--text-light);font-style:italic">No football, no Mass — clear day for Marwell</span></div></div>
+          </div>
+          <div class="highlight-card">
+            <div class="highlight-icon" aria-hidden="true">🦒</div>
+            <div>
+              <div class="highlight-title"><a href="https://www.marwell.org.uk/zoo/visit/tickets" target="_blank" rel="noopener" style="color:var(--mid-green);text-decoration:underline;">Marwell Zoo</a> — full day ✅</div>
+              <div class="highlight-detail">Gabriel's been asking for this. With no football and no Mass, you have the whole day. <strong>Forecast not yet reliable</strong> — 31 May is still ~10 days out, so check from ~28 May. The Met Office regional outlook leans towards settled conditions for late May, but treat that as a hint, not a promise. <strong>Book tickets online in advance.</strong> <a href="https://www.google.com/maps/search/?api=1&query=Marwell+Zoo+Hampshire" target="_blank" rel="noopener" style="color:var(--mid-green);text-decoration:underline;">📍 Open in Maps</a><br><br><strong>🚗 Leave home by 9:30</strong> — drive is 30–45 min via the A33/A34, gets you there for ~10:00 opening. Animals are most active in the cool morning, parking is easy, café queues short. Aim to leave ~15:00 to be home by mid-afternoon with energy left for a calm Sunday evening.<br><br>🎒 <strong><a href="#" onclick="event.preventDefault(); document.getElementById('tab-beachpack').click(); document.querySelector('.pack-tab[aria-controls=&quot;pack-marwell&quot;]').click(); return false;" style="color:var(--mid-green);text-decoration:underline;font-weight:600;">→ Open the Marwell checklist</a></strong> in the Day Packs tab — pre-flight prep, day-bag essentials, and a game-plan tip.</div>
+            </div>
+          </div>
+          <div class="booking-bar">
+            <div class="booking-item" data-confirm-id="marwell-tickets" tabindex="0" role="checkbox" aria-checked="false" onclick="toggleConfirm(this)" onkeydown="confirmKey(event,this)">
+              <div class="booking-check" aria-hidden="true">✓</div>Marwell tickets booked
+            </div>
+          </div>
+          <div class="notes-wrap">
+            <label class="notes-label" for="notes-w3sun">Notes</label>
+            <textarea class="notes-field" id="notes-w3sun" data-notes-id="notes-w3sun" placeholder="Ticket ref, entry time, snack plan…" oninput="saveNote(this)"></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /wk-main -->
+</div><!-- /weekends panel -->
+
+<!-- ═══════════════ DINNER TAB ═══════════════ -->
+<div id="dinners" class="tab-panel" role="tabpanel" aria-labelledby="tab-dinners">
+  <div class="dn-main">
+
+    <div class="dn-subnav" role="tablist" aria-label="Dinner sections">
+      <button class="dn-tab active" role="tab" aria-selected="true" aria-controls="meals" onclick="switchDn('meals', this)">🍴 Meals</button>
+      <button class="dn-tab" role="tab" aria-selected="false" aria-controls="shopping" onclick="switchDn('shopping', this)">🛒 Shopping</button>
+      <button class="dn-tab" role="tab" aria-selected="false" aria-controls="tips" onclick="switchDn('tips', this)">💡 Tips</button>
+    </div>
+
+    <!-- MEALS -->
+    <div id="meals" class="dn-section active">
+
+      <div style="background:white;border:1px solid var(--border);border-radius:11px;padding:14px 18px;margin-bottom:18px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;">
+        <div style="font-size:22px;line-height:1;" aria-hidden="true">📅</div>
+        <div style="flex:1;min-width:200px;">
+          <div style="font-size:13.5px;font-weight:600;color:var(--deep-green);">Weekly dinner cycle</div>
+          <div style="font-size:11.5px;color:var(--text-light);line-height:1.45;margin-top:2px;">Same menu each week through May · Serves 1 adult + 7yo + 3yo (≈2 adult portions) · Mon cooks the rice for Thursday's fried rice</div>
+        </div>
+      </div>
+
+      <div class="meals-grid">
+
+        <!-- Monday -->
+        <div class="meal-card">
+          <div class="meal-day-col" style="background:#FDF3DC;">
+            <div class="meal-day-num-large">mon</div>
+          </div>
+          <div class="meal-body">
+            <div class="meal-title"><span class="meal-emoji">🍗</span> Teriyaki Chicken + Rice <span class="meal-tag tag-prep">Prep day</span></div>
+            <div class="meal-sides">Steamed broccoli · edamame</div>
+            <div class="meal-tip">Fry chicken breast strips in a pan with soy sauce, mirin and a drizzle of honey until caramelised. Cook double the rice — Thursday's fried rice is already half done.</div>
+            <div class="dessert-row">🍎 Fresh fruit</div>
+          </div>
+        </div>
+
+        <!-- Tuesday -->
+        <div class="meal-card">
+          <div class="meal-day-col" style="background:#DCF0FF;">
+            <div class="meal-day-num-large">tue</div>
+          </div>
+          <div class="meal-body">
+            <div class="meal-title"><span class="meal-emoji">🐟</span> Salmon Fillet + Mash <span class="meal-tag tag-easy">Easy</span></div>
+            <div class="meal-sides">Pomegranate, avocado &amp; tomato salad</div>
+            <div class="meal-tip">Season salmon with lemon and olive oil, bake at 200°C for 12–14 min. The salad takes 5 minutes and uses up the first avocado — buy both at the start of the week.</div>
+            <div class="dessert-row">🥣 Yogurt + honey</div>
+          </div>
+        </div>
+
+        <!-- Wednesday -->
+        <div class="meal-card">
+          <div class="meal-day-col" style="background:#FDE8E0;">
+            <div class="meal-day-num-large">wed</div>
+          </div>
+          <div class="meal-body">
+            <div class="meal-title"><span class="meal-emoji">🍝</span> Beef Bolognese + Pasta <span class="meal-tag tag-easy">Family fave</span></div>
+            <div class="meal-sides">Cucumber sticks · grated parmesan</div>
+            <div class="meal-tip">Brown the mince well for depth of flavour. Blitz the veg smooth into the sauce — the boys won't notice. A 7yo will want it loose with parmesan; a 3yo does better with the sauce stirred through small pasta shapes.</div>
+            <div class="dessert-row">🍓 Fresh fruit</div>
+          </div>
+        </div>
+
+        <!-- Thursday -->
+        <div class="meal-card">
+          <div class="meal-day-col" style="background:#D8F3DC;">
+            <div class="meal-day-num-large">thu</div>
+          </div>
+          <div class="meal-body">
+            <div class="meal-title"><span class="meal-emoji">🍳</span> Chicken Fried Rice <span class="meal-tag tag-quick">15 min</span></div>
+            <div class="meal-sides">Frozen peas · soy sauce · egg</div>
+            <div class="meal-tip">Uses Monday's leftover rice — cold rice fries better than fresh. Toss chicken breast strips, rice, peas and a cracked egg in a hot wok with soy sauce. Done in 15 minutes.</div>
+            <div class="dessert-row">🥣 Yogurt + berries</div>
+          </div>
+        </div>
+
+        <!-- Friday -->
+        <div class="meal-card">
+          <div class="meal-day-col" style="background:#EDE7F6;">
+            <div class="meal-day-num-large">fri</div>
+          </div>
+          <div class="meal-body">
+            <div class="meal-title"><span class="meal-emoji">🐟</span> Fish Fingers + Potato Wedges <span class="meal-tag tag-quick">Easy win</span></div>
+            <div class="meal-sides">Baked beans · cucumber sunomono</div>
+            <div class="meal-tip">It's Friday. This is the right call. Oven bake the wedges and fish fingers together at 220°C for 20 min. Sunomono can be made ahead — slice cucumber, rice vinegar, sugar, sesame seeds, done.</div>
+            <div class="dessert-row">🍦 Ice lolly</div>
+          </div>
+        </div>
+
+        <!-- Saturday -->
+        <div class="meal-card">
+          <div class="meal-day-col" style="background:#FDF3DC;">
+            <div class="meal-day-num-large">sat</div>
+          </div>
+          <div class="meal-body">
+            <div class="meal-title"><span class="meal-emoji">🥟</span> Dumpling Night <span class="meal-tag tag-quick">25 min</span></div>
+            <div class="meal-sides">Pan-fried dumplings · jasmine rice · cucumber sunomono · carrot &amp; sesame ribbons · edamame</div>
+            <div class="meal-tip">Rafa's party covers pizza for the boys at lunch, so dinner at home goes a different way. Pan-fry shop-bought gyoza/dumplings (Itsu or supermarket frozen are great): hot oil, lid on with a splash of water, ~8 min. Plain rice for a fallback the 3yo will eat. Cucumber sunomono can be made earlier — slice cucumber thin, dress with rice vinegar + sugar + sesame seeds. Carrot ribbons: peel into ribbons, blanch 1 min, dress with sesame oil + soy + pinch of sugar. Edamame in the pod for the kids to pop themselves. Soft dipping sauce — soy + a drop of rice vinegar + sesame oil (add chilli to yours if you want).</div>
+            <div class="dessert-row">🍦 Ice lolly</div>
+          </div>
+        </div>
+
+        <!-- Sunday -->
+        <div class="meal-card">
+          <div class="meal-day-col" style="background:#D8F3DC;">
+            <div class="meal-day-num-large">sun</div>
+          </div>
+          <div class="meal-body">
+            <div class="meal-title"><span class="meal-emoji">🍗</span> Chicken &amp; Veg Tray Bake <span class="meal-tag tag-easy">One pan</span></div>
+            <div class="meal-sides">Potato chunks · carrots · broccoli</div>
+            <div class="meal-tip">Toss chicken breast fillets and potato chunks in olive oil, salt and dried herbs. Roast at 200°C for 30–35 min. Add broccoli for the last 12 minutes. One pan, almost no washing up.</div>
+            <div class="dessert-row">🍦 Ice lolly</div>
+          </div>
+        </div>
+
+      </div>
+    </div><!-- /meals -->
+
+    <!-- SHOPPING -->
+    <div id="shopping" class="dn-section">
+
+      <div style="background:var(--amber-light);border:1px solid #F0D89B;border-radius:11px;padding:12px 16px;margin-bottom:18px;font-size:12px;color:var(--text-mid);line-height:1.5;">
+        <strong style="color:#9A6800;">Sized for 1 adult + 7yo + 3yo</strong> · roughly 2 adult portions per meal. Quantities lean slightly generous to allow for leftovers and lunchbox use.
+      </div>
+
+      <div class="shop-section">
+        <div class="shop-section-title">🥩 Meat &amp; Fish</div>
+        <div class="shop-grid">
+          <div class="shop-item" data-shop-id="chicken-breast" tabindex="0" role="checkbox" aria-checked="false" onclick="toggleShop(this)" onkeydown="shopKey(event, this)"><div class="shop-check" aria-hidden="true">✓</div><div class="shop-name">Chicken breast</div><div class="shop-qty">600g (Mon + Thu + Sun)</div></div>
+          <div class="shop-item" data-shop-id="beef-mince" tabindex="0" role="checkbox" aria-checked="false" onclick="toggleShop(this)" onkeydown="shopKey(event, this)"><div class="shop-check" aria-hidden="true">✓</div><div class="shop-name">Beef mince</div><div class="shop-qty">300g</div></div>
+          <div class="shop-item" data-shop-id="salmon-fillets" tabindex="0" role="checkbox" aria-checked="false" onclick="toggleShop(this)" onkeydown="shopKey(event, this)"><div class="shop-check" aria-hidden="true">✓</div><div class="shop-name">Salmon fillets</div><div class="shop-qty">2 (adult + kids share)</div></div>
+          <div class="shop-item" data-shop-id="fish-fingers" tabindex="0" role="checkbox" aria-checked="false" onclick="toggleShop(this)" onkeydown="shopKey(event, this)"><div class="shop-check" aria-hidden="true">✓</div><div class="shop-name">Fish fingers</div><div class="shop-qty">1 box (~10)</div></div>
+        </div>
+      </div>
+
+      <div class="shop-section">
+        <div class="shop-section-title">🥦 Veg &amp; Salad</div>
+        <div class="shop-grid">
+          <div class="shop-item" data-shop-id="broccoli" tabindex="0" role="checkbox" aria-checked="false" onclick="toggleShop(this)" onkeydown="shopKey(event, this)"><div class="shop-check" aria-hidden="true">✓</div><div class="shop-name">Broccoli</div><div class="shop-qty">1 large head</div></div>
+          <div class="shop-item" data-shop-id="potatoes" tabindex="0" role="checkbox" aria-checked="false" onclick="toggleShop(this)" onkeydown="shopKey(event, this)"><div class="shop-check" aria-hidden="true">✓</div><div class="shop-name">Potatoes</div><div class="shop-qty">1.2kg (Tue + Fri + Sun)</div></div>
+          <div class="shop-item" data-shop-id="carrots" tabindex="0" role="checkbox" aria-checked="false" onclick="toggleShop(this)" onkeydown="shopKey(event, this)"><div class="shop-check" aria-hidden="true">✓</div><div class="shop-name">Carrots</div><div class="shop-qty">4</div></div>
+          <div class="shop-item" data-shop-id="cucumber" tabindex="0" role="checkbox" aria-checked="false" onclick="toggleShop(this)" onkeydown="shopKey(event, this)"><div class="shop-check" aria-hidden="true">✓</div><div class="shop-name">Cucumber</div><div class="shop-qty">2 (Wed + Fri + Sat)</div></div>
+          <div class="shop-item" data-shop-id="avocados" tabindex="0" role="checkbox" aria-checked="false" onclick="toggleShop(this)" onkeydown="shopKey(event, this)"><div class="shop-check" aria-hidden="true">✓</div><div class="shop-name">Avocados</div><div class="shop-qty">2 (buy Mon, use Tue + Sat)</div></div>
+          <div class="shop-item" data-shop-id="cherry-tomatoes" tabindex="0" role="checkbox" aria-checked="false" onclick="toggleShop(this)" onkeydown="shopKey(event, this)"><div class="shop-check" aria-hidden="true">✓</div><div class="shop-name">Cherry tomatoes</div><div class="shop-qty">1 small punnet (250g)</div></div>
+          <div class="shop-item" data-shop-id="pomegranate" tabindex="0" role="checkbox" aria-checked="false" onclick="toggleShop(this)" onkeydown="shopKey(event, this)"><div class="shop-check" aria-hidden="true">✓</div><div class="shop-name">Pomegranate seeds</div><div class="shop-qty">small pack (~80g)</div></div>
+          <div class="shop-item" data-shop-id="frozen-peas" tabindex="0" role="checkbox" aria-checked="false" onclick="toggleShop(this)" onkeydown="shopKey(event, this)"><div class="shop-check" aria-hidden="true">✓</div><div class="shop-name">Frozen peas</div><div class="shop-qty">1 bag (keeps)</div></div>
+          <div class="shop-item" data-shop-id="edamame-frozen" tabindex="0" role="checkbox" aria-checked="false" onclick="toggleShop(this)" onkeydown="shopKey(event, this)"><div class="shop-check" aria-hidden="true">✓</div><div class="shop-name">Edamame (frozen)</div><div class="shop-qty">1 bag (keeps)</div></div>
+        </div>
+      </div>
+
+      <div class="shop-section">
+        <div class="shop-section-title">🍚 Dry &amp; Pantry</div>
+        <div class="shop-grid">
+          <div class="shop-item" data-shop-id="jasmine-rice" tabindex="0" role="checkbox" aria-checked="false" onclick="toggleShop(this)" onkeydown="shopKey(event, this)"><div class="shop-check" aria-hidden="true">✓</div><div class="shop-name">Jasmine rice</div><div class="shop-qty">500g bag (Mon + Thu)</div></div>
+          <div class="shop-item" data-shop-id="pasta-penne-spaghetti" tabindex="0" role="checkbox" aria-checked="false" onclick="toggleShop(this)" onkeydown="shopKey(event, this)"><div class="shop-check" aria-hidden="true">✓</div><div class="shop-name">Pasta (penne or fusilli)</div><div class="shop-qty">500g bag</div></div>
+          <div class="shop-item" data-shop-id="passata" tabindex="0" role="checkbox" aria-checked="false" onclick="toggleShop(this)" onkeydown="shopKey(event, this)"><div class="shop-check" aria-hidden="true">✓</div><div class="shop-name">Passata</div><div class="shop-qty">1 jar (500g)</div></div>
+          <div class="shop-item" data-shop-id="soy-sauce" tabindex="0" role="checkbox" aria-checked="false" onclick="toggleShop(this)" onkeydown="shopKey(event, this)"><div class="shop-check" aria-hidden="true">✓</div><div class="shop-name">Soy sauce</div><div class="shop-qty">if low</div></div>
+          <div class="shop-item" data-shop-id="mirin" tabindex="0" role="checkbox" aria-checked="false" onclick="toggleShop(this)" onkeydown="shopKey(event, this)"><div class="shop-check" aria-hidden="true">✓</div><div class="shop-name">Mirin</div><div class="shop-qty">if low</div></div>
+          <div class="shop-item" data-shop-id="rice-vinegar" tabindex="0" role="checkbox" aria-checked="false" onclick="toggleShop(this)" onkeydown="shopKey(event, this)"><div class="shop-check" aria-hidden="true">✓</div><div class="shop-name">Rice vinegar</div><div class="shop-qty">if low</div></div>
+          <div class="shop-item" data-shop-id="sesame-seeds" tabindex="0" role="checkbox" aria-checked="false" onclick="toggleShop(this)" onkeydown="shopKey(event, this)"><div class="shop-check" aria-hidden="true">✓</div><div class="shop-name">Sesame seeds</div><div class="shop-qty">small pack</div></div>
+          <div class="shop-item" data-shop-id="baked-beans" tabindex="0" role="checkbox" aria-checked="false" onclick="toggleShop(this)" onkeydown="shopKey(event, this)"><div class="shop-check" aria-hidden="true">✓</div><div class="shop-name">Baked beans</div><div class="shop-qty">1 tin (415g)</div></div>
+          <div class="shop-item" data-shop-id="honey" tabindex="0" role="checkbox" aria-checked="false" onclick="toggleShop(this)" onkeydown="shopKey(event, this)"><div class="shop-check" aria-hidden="true">✓</div><div class="shop-name">Honey</div><div class="shop-qty">if low (Mon + Tue)</div></div>
+          <div class="shop-item" data-shop-id="parmesan" tabindex="0" role="checkbox" aria-checked="false" onclick="toggleShop(this)" onkeydown="shopKey(event, this)"><div class="shop-check" aria-hidden="true">✓</div><div class="shop-name">Parmesan</div><div class="shop-qty">small block or pre-grated</div></div>
+          <div class="shop-item" data-shop-id="eggs" tabindex="0" role="checkbox" aria-checked="false" onclick="toggleShop(this)" onkeydown="shopKey(event, this)"><div class="shop-check" aria-hidden="true">✓</div><div class="shop-name">Eggs</div><div class="shop-qty">6 (Thu fried rice + spares)</div></div>
+          <div class="shop-item" data-shop-id="lemon" tabindex="0" role="checkbox" aria-checked="false" onclick="toggleShop(this)" onkeydown="shopKey(event, this)"><div class="shop-check" aria-hidden="true">✓</div><div class="shop-name">Lemon</div><div class="shop-qty">1</div></div>
+        </div>
+      </div>
+
+      <div class="shop-section">
+        <div class="shop-section-title">🥟 Dumpling Night (Saturday)</div>
+        <div class="shop-grid">
+          <div class="shop-item" data-shop-id="dumplings" tabindex="0" role="checkbox" aria-checked="false" onclick="toggleShop(this)" onkeydown="shopKey(event, this)"><div class="shop-check" aria-hidden="true">✓</div><div class="shop-name">Dumplings / gyoza</div><div class="shop-qty">~20 (Itsu or frozen pack)</div></div>
+          <div class="shop-item" data-shop-id="sesame-oil" tabindex="0" role="checkbox" aria-checked="false" onclick="toggleShop(this)" onkeydown="shopKey(event, this)"><div class="shop-check" aria-hidden="true">✓</div><div class="shop-name">Sesame oil</div><div class="shop-qty">if low (carrot ribbons + dip)</div></div>
+          <div class="shop-item" data-shop-id="spring-onions" tabindex="0" role="checkbox" aria-checked="false" onclick="toggleShop(this)" onkeydown="shopKey(event, this)"><div class="shop-check" aria-hidden="true">✓</div><div class="shop-name">Spring onions (optional)</div><div class="shop-qty">small bunch · for dip</div></div>
+          <div class="shop-item" data-shop-id="extra-edamame" tabindex="0" role="checkbox" aria-checked="false" onclick="toggleShop(this)" onkeydown="shopKey(event, this)"><div class="shop-check" aria-hidden="true">✓</div><div class="shop-name">Top-up edamame (if low)</div><div class="shop-qty">already in pantry list</div></div>
+        </div>
+        <div style="font-size:11.5px;color:var(--text-light);margin-top:8px;padding:8px 12px;background:var(--cream);border-radius:7px;line-height:1.5;">
+          <strong style="color:var(--text-mid);">Already on the list:</strong> rice (Mon/Thu), cucumber, carrots, soy sauce, rice vinegar, sesame seeds, edamame. So the only truly new item is the dumplings themselves.
+        </div>
+      </div>
+
+      <div class="shop-section">
+        <div class="shop-section-title">🍎 Fruit, Yogurt &amp; Treats</div>
+        <div class="shop-grid">
+          <div class="shop-item" data-shop-id="bananas" tabindex="0" role="checkbox" aria-checked="false" onclick="toggleShop(this)" onkeydown="shopKey(event, this)"><div class="shop-check" aria-hidden="true">✓</div><div class="shop-name">Bananas</div><div class="shop-qty">small bunch</div></div>
+          <div class="shop-item" data-shop-id="apples" tabindex="0" role="checkbox" aria-checked="false" onclick="toggleShop(this)" onkeydown="shopKey(event, this)"><div class="shop-check" aria-hidden="true">✓</div><div class="shop-name">Apples</div><div class="shop-qty">4–5</div></div>
+          <div class="shop-item" data-shop-id="grapes-or-similar" tabindex="0" role="checkbox" aria-checked="false" onclick="toggleShop(this)" onkeydown="shopKey(event, this)"><div class="shop-check" aria-hidden="true">✓</div><div class="shop-name">Grapes (or seasonal fruit)</div><div class="shop-qty">1 small punnet</div></div>
+          <div class="shop-item" data-shop-id="berries" tabindex="0" role="checkbox" aria-checked="false" onclick="toggleShop(this)" onkeydown="shopKey(event, this)"><div class="shop-check" aria-hidden="true">✓</div><div class="shop-name">Strawberries / blueberries</div><div class="shop-qty">small punnet (Thu yogurt)</div></div>
+          <div class="shop-item" data-shop-id="yogurt" tabindex="0" role="checkbox" aria-checked="false" onclick="toggleShop(this)" onkeydown="shopKey(event, this)"><div class="shop-check" aria-hidden="true">✓</div><div class="shop-name">Natural or Greek yogurt</div><div class="shop-qty">500g pot (Tue + Thu)</div></div>
+          <div class="shop-item" data-shop-id="ice-lollies" tabindex="0" role="checkbox" aria-checked="false" onclick="toggleShop(this)" onkeydown="shopKey(event, this)"><div class="shop-check" aria-hidden="true">✓</div><div class="shop-name">Ice lollies</div><div class="shop-qty">pack of 10+ (Fri/Sat/Sun)</div></div>
+        </div>
+      </div>
+
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:24px;padding:14px 18px;background:white;border:1px solid var(--border);border-radius:11px;flex-wrap:wrap;gap:10px;">
+        <div style="font-size:12px;color:var(--text-light);">
+          <span id="shop-progress" style="font-weight:600;color:var(--mid-green);">0 of 0</span> items ticked
+        </div>
+        <button onclick="resetShop()" style="padding:7px 14px;background:none;border:1px solid var(--border);border-radius:18px;font-family:'DM Sans',sans-serif;font-size:11.5px;font-weight:500;color:var(--text-mid);cursor:pointer;">↻ Reset list</button>
+      </div>
+
+    </div><!-- /shopping -->
+
+    <!-- TIPS -->
+    <div id="tips" class="dn-section">
+      <div class="tips-grid">
+        <div class="tip-card">
+          <div class="tip-card-title">🔄 Cook-once logic</div>
+          <ul>
+            <li>Monday: cook double rice → Thursday fried rice is half done</li>
+            <li>Both avocados bought Monday are ready Tue + Sat</li>
+            <li>Sunday tray bake: roast a few extra potato chunks for Monday lunchboxes</li>
+          </ul>
+        </div>
+        <div class="tip-card">
+          <div class="tip-card-title">🥒 Sunomono in 3 minutes</div>
+          <ul>
+            <li>Slice cucumber thin or ribbon with a peeler</li>
+            <li>Mix: 2 tbsp rice vinegar, 1 tsp sugar, pinch of salt</li>
+            <li>Toss, rest 5 min, add sesame seeds on top</li>
+            <li>Makes ahead — keeps in fridge for 2 days</li>
+          </ul>
+        </div>
+        <div class="tip-card">
+          <div class="tip-card-title">🧒 Kid-friendly tactics</div>
+          <ul>
+            <li>Let them pop their own edamame pods — they love it</li>
+            <li>A little soy sauce or ketchup on the side goes a long way</li>
+            <li>If a meal is refused: cucumber and rice. They won't go hungry</li>
+            <li>Friday fish fingers is a mental break for everyone — own it</li>
+          </ul>
+        </div>
+        <div class="tip-card">
+          <div class="tip-card-title">🥗 Nutrition check</div>
+          <ul>
+            <li>Every dinner has protein + carb + vegetable</li>
+            <li>Salmon Tuesday covers omega-3s for the week</li>
+            <li>Edamame gives plant protein and iron</li>
+            <li>Broccoli and carrots rotate through for vitamins A and C</li>
+            <li>Dessert: fruit Mon/Wed, yogurt Tue/Thu, lollies Fri/Sat/Sun</li>
+          </ul>
+        </div>
+        <div class="tip-card">
+          <div class="tip-card-title">🍝 Pasta &amp; sauce tips</div>
+          <ul>
+            <li>Salt the pasta water generously — it matters</li>
+            <li>Blitz veg smooth into the bolognese; kids won't notice</li>
+            <li>Keep a ladle of pasta water to loosen the sauce</li>
+            <li>Smaller shapes (penne, fusilli) are easier for the 3yo than spaghetti</li>
+          </ul>
+        </div>
+        <div class="tip-card">
+          <div class="tip-card-title">🛒 Shopping strategy</div>
+          <ul>
+            <li>Buy both avocados on Monday — they ripen over the week</li>
+            <li>One shop covers the week: meat &amp; fish Mon, top up veg Thu if needed</li>
+            <li>Pre-cut veg on Sunday and keep in the fridge for speed</li>
+            <li>Salmon: ask the fishmonger to skin if you don't fancy doing it</li>
+          </ul>
+        </div>
+      </div>
+    </div><!-- /tips -->
+
+  </div><!-- /dn-main -->
+</div><!-- /dinners panel -->
+
+<!-- ═══════════════ DAY PACKS TAB ═══════════════ -->
+<div id="beachpack" class="tab-panel" role="tabpanel" aria-labelledby="tab-beachpack">
+  <div style="max-width:960px;margin:0 auto;padding:44px 48px 80px;">
+
+    <!-- Sub-nav -->
+    <div class="pack-subnav" role="tablist" aria-label="Day pack sections">
+      <button class="pack-tab active" role="tab" aria-selected="true" aria-controls="pack-beach" onclick="switchPack('pack-beach', this)">🏖 Beach · 24 May</button>
+      <button class="pack-tab" role="tab" aria-selected="false" aria-controls="pack-marwell" onclick="switchPack('pack-marwell', this)">🦒 Marwell · 31 May</button>
+    </div>
+
+    <!-- BEACH SECTION -->
+    <div id="pack-beach" class="pack-section active">
+
+    <!-- Hero/intro -->
+    <div style="background:linear-gradient(135deg,#E07C5A,#C95820);border-radius:16px;padding:24px 28px;color:white;margin-bottom:28px;display:flex;gap:18px;align-items:flex-start;flex-wrap:wrap;">
+      <div style="font-size:36px;line-height:1;flex-shrink:0;" aria-hidden="true">🏖</div>
+      <div style="flex:1;min-width:240px;">
+        <div style="font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.7);margin-bottom:6px;">Sunday 24 May · Sandbanks, Poole · 🔥 ~28–30°C</div>
+        <div style="font-family:'Playfair Display',serif;font-size:24px;font-weight:900;line-height:1.15;margin-bottom:6px;">Beach Pack Checklist</div>
+        <div style="font-size:13px;color:rgba(255,255,255,0.9);line-height:1.5;">Heatwave conditions — pack the car <strong>Saturday evening</strong>, leave by 7:30am, off the sand by 12:30. Heat-safety items marked 🔥. Ticks save automatically.</div>
+      </div>
+      <div id="pack-progress-hero" style="background:rgba(255,255,255,0.15);border-radius:11px;padding:10px 14px;text-align:center;min-width:90px;">
+        <div style="font-family:'Playfair Display',serif;font-size:24px;font-weight:900;line-height:1;" id="pack-progress-num">0 / 0</div>
+        <div style="font-size:9.5px;letter-spacing:1.2px;text-transform:uppercase;color:rgba(255,255,255,0.7);margin-top:4px;">packed</div>
+      </div>
+    </div>
+
+    <!-- Sub-nav: collapsible category sections -->
+    <div class="pack-categories">
+
+      <details class="pack-category" open>
+        <summary>
+          <span class="pack-cat-icon">🏖</span>
+          <span class="pack-cat-title">Beach Gear</span>
+          <span class="pack-cat-count" data-cat="beach"></span>
+          <span class="pack-cat-chevron">›</span>
+        </summary>
+        <div class="pack-items">
+          <div class="pack-item" data-pack-id="windbreak" tabindex="0" role="checkbox" aria-checked="false" onclick="togglePack(this)" onkeydown="packKey(event, this)"><div class="pack-check" aria-hidden="true">✓</div><div class="pack-name">🔥 Parasol or pop-up sun shelter <span class="pack-note">(critical in heatwave)</span></div></div>
+          <div class="pack-item" data-pack-id="picnic-blanket" tabindex="0" role="checkbox" aria-checked="false" onclick="togglePack(this)" onkeydown="packKey(event, this)"><div class="pack-check" aria-hidden="true">✓</div><div class="pack-name">Picnic blanket or beach mat</div></div>
+          <div class="pack-item" data-pack-id="towels" tabindex="0" role="checkbox" aria-checked="false" onclick="togglePack(this)" onkeydown="packKey(event, this)"><div class="pack-check" aria-hidden="true">✓</div><div class="pack-name">Towels — one per person + spare</div></div>
+          <div class="pack-item" data-pack-id="buckets-spades" tabindex="0" role="checkbox" aria-checked="false" onclick="togglePack(this)" onkeydown="packKey(event, this)"><div class="pack-check" aria-hidden="true">✓</div><div class="pack-name">Buckets, spades &amp; sandcastle moulds</div></div>
+          <div class="pack-item" data-pack-id="beach-ball" tabindex="0" role="checkbox" aria-checked="false" onclick="togglePack(this)" onkeydown="packKey(event, this)"><div class="pack-check" aria-hidden="true">✓</div><div class="pack-name">Inflatable / beach ball</div></div>
+          <div class="pack-item" data-pack-id="boogie-board" tabindex="0" role="checkbox" aria-checked="false" onclick="togglePack(this)" onkeydown="packKey(event, this)"><div class="pack-check" aria-hidden="true">✓</div><div class="pack-name">Boogie board <span class="pack-note">(optional)</span></div></div>
+        </div>
+      </details>
+
+      <details class="pack-category" open>
+        <summary>
+          <span class="pack-cat-icon">🥪</span>
+          <span class="pack-cat-title">Food &amp; Drink</span>
+          <span class="pack-cat-count" data-cat="food"></span>
+          <span class="pack-cat-chevron">›</span>
+        </summary>
+        <div class="pack-items">
+          <div class="pack-item" data-pack-id="cool-bag" tabindex="0" role="checkbox" aria-checked="false" onclick="togglePack(this)" onkeydown="packKey(event, this)"><div class="pack-check" aria-hidden="true">✓</div><div class="pack-name">🔥 Cool bag with extra ice packs <span class="pack-note">(in the freezer Sat night)</span></div></div>
+          <div class="pack-item" data-pack-id="picnic-lunch" tabindex="0" role="checkbox" aria-checked="false" onclick="togglePack(this)" onkeydown="packKey(event, this)"><div class="pack-check" aria-hidden="true">✓</div><div class="pack-name">Picnic lunch — light, cool food <span class="pack-note">(sandwiches, fruit, cucumber)</span></div></div>
+          <div class="pack-item" data-pack-id="water" tabindex="0" role="checkbox" aria-checked="false" onclick="togglePack(this)" onkeydown="packKey(event, this)"><div class="pack-check" aria-hidden="true">✓</div><div class="pack-name">🔥 Water — minimum 4L <span class="pack-note">(more than you think)</span></div></div>
+          <div class="pack-item" data-pack-id="bottles" tabindex="0" role="checkbox" aria-checked="false" onclick="togglePack(this)" onkeydown="packKey(event, this)"><div class="pack-check" aria-hidden="true">✓</div><div class="pack-name">Refillable bottles for the boys</div></div>
+          <div class="pack-item" data-pack-id="electrolytes" tabindex="0" role="checkbox" aria-checked="false" onclick="togglePack(this)" onkeydown="packKey(event, this)"><div class="pack-check" aria-hidden="true">✓</div><div class="pack-name">🔥 Dioralyte / electrolyte sachets <span class="pack-note">(if anyone wilts)</span></div></div>
+          <div class="pack-item" data-pack-id="frozen-lollies" tabindex="0" role="checkbox" aria-checked="false" onclick="togglePack(this)" onkeydown="packKey(event, this)"><div class="pack-check" aria-hidden="true">✓</div><div class="pack-name">🔥 Frozen ice lollies in the cool bag</div></div>
+          <div class="pack-item" data-pack-id="cash-card" tabindex="0" role="checkbox" aria-checked="false" onclick="togglePack(this)" onkeydown="packKey(event, this)"><div class="pack-check" aria-hidden="true">✓</div><div class="pack-name">Cash &amp; card for the café</div></div>
+          <div class="pack-item" data-pack-id="wipes" tabindex="0" role="checkbox" aria-checked="false" onclick="togglePack(this)" onkeydown="packKey(event, this)"><div class="pack-check" aria-hidden="true">✓</div><div class="pack-name">Wet wipes &amp; kitchen roll</div></div>
+          <div class="pack-item" data-pack-id="bin-bag" tabindex="0" role="checkbox" aria-checked="false" onclick="togglePack(this)" onkeydown="packKey(event, this)"><div class="pack-check" aria-hidden="true">✓</div><div class="pack-name">Bin bag for rubbish</div></div>
+        </div>
+      </details>
+
+      <details class="pack-category" open>
+        <summary>
+          <span class="pack-cat-icon">🧒</span>
+          <span class="pack-cat-title">Kids</span>
+          <span class="pack-cat-count" data-cat="kids"></span>
+          <span class="pack-cat-chevron">›</span>
+        </summary>
+        <div class="pack-items">
+          <div class="pack-item" data-pack-id="swimwear" tabindex="0" role="checkbox" aria-checked="false" onclick="togglePack(this)" onkeydown="packKey(event, this)"><div class="pack-check" aria-hidden="true">✓</div><div class="pack-name">Swimwear <span class="pack-note">(worn under clothes for the drive)</span></div></div>
+          <div class="pack-item" data-pack-id="swim-nappies" tabindex="0" role="checkbox" aria-checked="false" onclick="togglePack(this)" onkeydown="packKey(event, this)"><div class="pack-check" aria-hidden="true">✓</div><div class="pack-name">Swim nappies <span class="pack-note">(Lucas)</span></div></div>
+          <div class="pack-item" data-pack-id="armbands" tabindex="0" role="checkbox" aria-checked="false" onclick="togglePack(this)" onkeydown="packKey(event, this)"><div class="pack-check" aria-hidden="true">✓</div><div class="pack-name">Armbands / float vest <span class="pack-note">(Lucas)</span></div></div>
+          <div class="pack-item" data-pack-id="sun-hats" tabindex="0" role="checkbox" aria-checked="false" onclick="togglePack(this)" onkeydown="packKey(event, this)"><div class="pack-check" aria-hidden="true">✓</div><div class="pack-name">Sun hats — both boys</div></div>
+          <div class="pack-item" data-pack-id="uv-swim-tops" tabindex="0" role="checkbox" aria-checked="false" onclick="togglePack(this)" onkeydown="packKey(event, this)"><div class="pack-check" aria-hidden="true">✓</div><div class="pack-name">UV swim tops</div></div>
+          <div class="pack-item" data-pack-id="spare-outfits" tabindex="0" role="checkbox" aria-checked="false" onclick="togglePack(this)" onkeydown="packKey(event, this)"><div class="pack-check" aria-hidden="true">✓</div><div class="pack-name">Spare full outfit each <span class="pack-note">(×2 for Lucas)</span></div></div>
+          <div class="pack-item" data-pack-id="car-toys" tabindex="0" role="checkbox" aria-checked="false" onclick="togglePack(this)" onkeydown="packKey(event, this)"><div class="pack-check" aria-hidden="true">✓</div><div class="pack-name">Favourite small toy each for the drive</div></div>
+        </div>
+      </details>
+
+      <details class="pack-category" open>
+        <summary>
+          <span class="pack-cat-icon">☀️</span>
+          <span class="pack-cat-title">Clothing &amp; Sun</span>
+          <span class="pack-cat-count" data-cat="sun"></span>
+          <span class="pack-cat-chevron">›</span>
+        </summary>
+        <div class="pack-items">
+          <div class="pack-item" data-pack-id="sunscreen" tabindex="0" role="checkbox" aria-checked="false" onclick="togglePack(this)" onkeydown="packKey(event, this)"><div class="pack-check" aria-hidden="true">✓</div><div class="pack-name">🔥 Sunscreen factor 50 <span class="pack-note">(apply before leaving + reapply every 90 min)</span></div></div>
+          <div class="pack-item" data-pack-id="after-sun" tabindex="0" role="checkbox" aria-checked="false" onclick="togglePack(this)" onkeydown="packKey(event, this)"><div class="pack-check" aria-hidden="true">✓</div><div class="pack-name">After-sun lotion</div></div>
+          <div class="pack-item" data-pack-id="sunglasses" tabindex="0" role="checkbox" aria-checked="false" onclick="togglePack(this)" onkeydown="packKey(event, this)"><div class="pack-check" aria-hidden="true">✓</div><div class="pack-name">Sunglasses for adults</div></div>
+          <div class="pack-item" data-pack-id="water-shoes" tabindex="0" role="checkbox" aria-checked="false" onclick="togglePack(this)" onkeydown="packKey(event, this)"><div class="pack-check" aria-hidden="true">✓</div><div class="pack-name">🔥 Water shoes / jellies <span class="pack-note">(sand will be scorching)</span></div></div>
+          <div class="pack-item" data-pack-id="shoes" tabindex="0" role="checkbox" aria-checked="false" onclick="togglePack(this)" onkeydown="packKey(event, this)"><div class="pack-check" aria-hidden="true">✓</div><div class="pack-name">Flip-flops + sturdy shoes for the walk</div></div>
+          <div class="pack-item" data-pack-id="light-cover-up" tabindex="0" role="checkbox" aria-checked="false" onclick="togglePack(this)" onkeydown="packKey(event, this)"><div class="pack-check" aria-hidden="true">✓</div><div class="pack-name">Light long-sleeve cover-up <span class="pack-note">(for peak sun)</span></div></div>
+          <div class="pack-item" data-pack-id="lip-balm" tabindex="0" role="checkbox" aria-checked="false" onclick="togglePack(this)" onkeydown="packKey(event, this)"><div class="pack-check" aria-hidden="true">✓</div><div class="pack-name">Lip balm with SPF</div></div>
+        </div>
+      </details>
+
+      <details class="pack-category" open>
+        <summary>
+          <span class="pack-cat-icon">🚗</span>
+          <span class="pack-cat-title">Car &amp; Practical</span>
+          <span class="pack-cat-count" data-cat="car"></span>
+          <span class="pack-cat-chevron">›</span>
+        </summary>
+        <div class="pack-items">
+          <div class="pack-item" data-pack-id="parking-confirmation" tabindex="0" role="checkbox" aria-checked="false" onclick="togglePack(this)" onkeydown="packKey(event, this)"><div class="pack-check" aria-hidden="true">✓</div><div class="pack-name">JustPark / RingGo app set up <span class="pack-note">(pay-and-display, no pre-booking — just arrive before 9am)</span></div></div>
+          <div class="pack-item" data-pack-id="phone-charger" tabindex="0" role="checkbox" aria-checked="false" onclick="togglePack(this)" onkeydown="packKey(event, this)"><div class="pack-check" aria-hidden="true">✓</div><div class="pack-name">Phone charger / car charger</div></div>
+          <div class="pack-item" data-pack-id="car-sunshades" tabindex="0" role="checkbox" aria-checked="false" onclick="togglePack(this)" onkeydown="packKey(event, this)"><div class="pack-check" aria-hidden="true">✓</div><div class="pack-name">🔥 Car window sunshades <span class="pack-note">(rear windows for the boys)</span></div></div>
+          <div class="pack-item" data-pack-id="first-aid" tabindex="0" role="checkbox" aria-checked="false" onclick="togglePack(this)" onkeydown="packKey(event, this)"><div class="pack-check" aria-hidden="true">✓</div><div class="pack-name">First aid kit</div></div>
+          <div class="pack-item" data-pack-id="plastic-bags" tabindex="0" role="checkbox" aria-checked="false" onclick="togglePack(this)" onkeydown="packKey(event, this)"><div class="pack-check" aria-hidden="true">✓</div><div class="pack-name">Plastic bags for wet/sandy clothes</div></div>
+          <div class="pack-item" data-pack-id="boot-sheet" tabindex="0" role="checkbox" aria-checked="false" onclick="togglePack(this)" onkeydown="packKey(event, this)"><div class="pack-check" aria-hidden="true">✓</div><div class="pack-name">Old fitted sheet for the car boot <span class="pack-note">(sand collector)</span></div></div>
+          <div class="pack-item" data-pack-id="drive-snacks" tabindex="0" role="checkbox" aria-checked="false" onclick="togglePack(this)" onkeydown="packKey(event, this)"><div class="pack-check" aria-hidden="true">✓</div><div class="pack-name">Snacks for the drive</div></div>
+          <div class="pack-item" data-pack-id="fuel" tabindex="0" role="checkbox" aria-checked="false" onclick="togglePack(this)" onkeydown="packKey(event, this)"><div class="pack-check" aria-hidden="true">✓</div><div class="pack-name">Fuel topped up Saturday</div></div>
+        </div>
+      </details>
+
+    </div>
+
+    <!-- Load & go rule -->
+    <div style="margin-top:24px;background:white;border:1px dashed #E07C5A;border-radius:11px;padding:16px 20px;display:flex;gap:12px;align-items:flex-start;">
+      <div style="font-size:22px;line-height:1;flex-shrink:0;" aria-hidden="true">💡</div>
+      <div style="font-size:13px;color:var(--text-mid);line-height:1.55;">
+        <strong style="color:var(--blush);">The "load and go" rule:</strong> everything except the cool bag, ice packs and worn swimwear goes in the boot Saturday night. Put ice packs and lollies in the freezer overnight. Sunday morning is just: cool bag in, kids in, drive.
+      </div>
+    </div>
+
+    <!-- Bottom progress + reset -->
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-top:20px;padding:14px 18px;background:white;border:1px solid var(--border);border-radius:11px;flex-wrap:wrap;gap:10px;">
+      <div style="font-size:12px;color:var(--text-light);">
+        <span id="pack-progress" style="font-weight:600;color:var(--blush);">0 of 0</span> items packed
+      </div>
+      <button onclick="resetPack()" style="padding:7px 14px;background:none;border:1px solid var(--border);border-radius:18px;font-family:'DM Sans',sans-serif;font-size:11.5px;font-weight:500;color:var(--text-mid);cursor:pointer;">↻ Reset Beach list</button>
+    </div>
+
+    </div><!-- /pack-beach -->
+
+    <!-- MARWELL SECTION -->
+    <div id="pack-marwell" class="pack-section">
+
+      <!-- Hero/intro -->
+      <div style="background:linear-gradient(135deg,#2D6A4F,#1A3A2A);border-radius:16px;padding:24px 28px;color:white;margin-bottom:28px;display:flex;gap:18px;align-items:flex-start;flex-wrap:wrap;">
+        <div style="font-size:36px;line-height:1;flex-shrink:0;" aria-hidden="true">🦒</div>
+        <div style="flex:1;min-width:240px;">
+          <div style="font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.7);margin-bottom:6px;">Sunday 31 May · Marwell Zoo · Full day</div>
+          <div style="font-family:'Playfair Display',serif;font-size:24px;font-weight:900;line-height:1.15;margin-bottom:6px;">Marwell Pack Checklist</div>
+          <div style="font-size:13px;color:rgba(255,255,255,0.9);line-height:1.5;">Leave home by 9:30 for ~10:00 opening. ~140 acres of walking, mostly outdoors — pace yourself. <strong>Check the weather forecast from ~28 May</strong> and adjust. Ticks save automatically.</div>
+        </div>
+        <div id="marwell-progress-hero" style="background:rgba(255,255,255,0.15);border-radius:11px;padding:10px 14px;text-align:center;min-width:90px;">
+          <div style="font-family:'Playfair Display',serif;font-size:24px;font-weight:900;line-height:1;" id="marwell-progress-num">0 / 0</div>
+          <div style="font-size:9.5px;letter-spacing:1.2px;text-transform:uppercase;color:rgba(255,255,255,0.7);margin-top:4px;">packed</div>
+        </div>
+      </div>
+
+      <!-- Categories -->
+      <div class="pack-categories">
+
+        <details class="pack-category" open>
+          <summary>
+            <span class="pack-cat-icon">🎟</span>
+            <span class="pack-cat-title">Tickets &amp; Entry</span>
+            <span class="pack-cat-count"></span>
+            <span class="pack-cat-chevron">›</span>
+          </summary>
+          <div class="pack-items">
+            <div class="pack-item" data-marwell-id="tickets-booked" tabindex="0" role="checkbox" aria-checked="false" onclick="toggleMarwell(this)" onkeydown="marwellKey(event, this)"><div class="pack-check" aria-hidden="true">✓</div><div class="pack-name">Tickets booked online <span class="pack-note">(cheaper than gate, often sells out)</span></div></div>
+            <div class="pack-item" data-marwell-id="tickets-screenshot" tabindex="0" role="checkbox" aria-checked="false" onclick="toggleMarwell(this)" onkeydown="marwellKey(event, this)"><div class="pack-check" aria-hidden="true">✓</div><div class="pack-name">Booking confirmation screenshotted</div></div>
+            <div class="pack-item" data-marwell-id="map-app" tabindex="0" role="checkbox" aria-checked="false" onclick="toggleMarwell(this)" onkeydown="marwellKey(event, this)"><div class="pack-check" aria-hidden="true">✓</div><div class="pack-name">Marwell app or paper map <span class="pack-note">(easier with kids)</span></div></div>
+          </div>
+        </details>
+
+        <details class="pack-category" open>
+          <summary>
+            <span class="pack-cat-icon">🥪</span>
+            <span class="pack-cat-title">Food &amp; Drink</span>
+            <span class="pack-cat-count"></span>
+            <span class="pack-cat-chevron">›</span>
+          </summary>
+          <div class="pack-items">
+            <div class="pack-item" data-marwell-id="picnic-lunch" tabindex="0" role="checkbox" aria-checked="false" onclick="toggleMarwell(this)" onkeydown="marwellKey(event, this)"><div class="pack-check" aria-hidden="true">✓</div><div class="pack-name">Picnic lunch <span class="pack-note">(cafés get busy + pricey)</span></div></div>
+            <div class="pack-item" data-marwell-id="picnic-blanket" tabindex="0" role="checkbox" aria-checked="false" onclick="toggleMarwell(this)" onkeydown="marwellKey(event, this)"><div class="pack-check" aria-hidden="true">✓</div><div class="pack-name">Picnic blanket <span class="pack-note">(lots of grass for lunch)</span></div></div>
+            <div class="pack-item" data-marwell-id="snacks" tabindex="0" role="checkbox" aria-checked="false" onclick="toggleMarwell(this)" onkeydown="marwellKey(event, this)"><div class="pack-check" aria-hidden="true">✓</div><div class="pack-name">Snacks for energy dips <span class="pack-note">(crisps, dried fruit, cereal bars)</span></div></div>
+            <div class="pack-item" data-marwell-id="water" tabindex="0" role="checkbox" aria-checked="false" onclick="toggleMarwell(this)" onkeydown="marwellKey(event, this)"><div class="pack-check" aria-hidden="true">✓</div><div class="pack-name">Refillable water bottles (×3) <span class="pack-note">(refill points on site)</span></div></div>
+            <div class="pack-item" data-marwell-id="cash-card" tabindex="0" role="checkbox" aria-checked="false" onclick="toggleMarwell(this)" onkeydown="marwellKey(event, this)"><div class="pack-check" aria-hidden="true">✓</div><div class="pack-name">Cash &amp; card for café / gift shop</div></div>
+          </div>
+        </details>
+
+        <details class="pack-category" open>
+          <summary>
+            <span class="pack-cat-icon">🧒</span>
+            <span class="pack-cat-title">Kids</span>
+            <span class="pack-cat-count"></span>
+            <span class="pack-cat-chevron">›</span>
+          </summary>
+          <div class="pack-items">
+            <div class="pack-item" data-marwell-id="comfy-shoes" tabindex="0" role="checkbox" aria-checked="false" onclick="toggleMarwell(this)" onkeydown="marwellKey(event, this)"><div class="pack-check" aria-hidden="true">✓</div><div class="pack-name">Comfy walking shoes — both boys <span class="pack-note">(lots of walking)</span></div></div>
+            <div class="pack-item" data-marwell-id="sun-hats" tabindex="0" role="checkbox" aria-checked="false" onclick="toggleMarwell(this)" onkeydown="marwellKey(event, this)"><div class="pack-check" aria-hidden="true">✓</div><div class="pack-name">Sun hats — both boys</div></div>
+            <div class="pack-item" data-marwell-id="spare-outfit" tabindex="0" role="checkbox" aria-checked="false" onclick="toggleMarwell(this)" onkeydown="marwellKey(event, this)"><div class="pack-check" aria-hidden="true">✓</div><div class="pack-name">Spare clothes <span class="pack-note">(×2 for Lucas — spills, accidents)</span></div></div>
+            <div class="pack-item" data-marwell-id="nappies" tabindex="0" role="checkbox" aria-checked="false" onclick="toggleMarwell(this)" onkeydown="marwellKey(event, this)"><div class="pack-check" aria-hidden="true">✓</div><div class="pack-name">Nappies + wipes <span class="pack-note">(Lucas)</span></div></div>
+            <div class="pack-item" data-marwell-id="buggy" tabindex="0" role="checkbox" aria-checked="false" onclick="toggleMarwell(this)" onkeydown="marwellKey(event, this)"><div class="pack-check" aria-hidden="true">✓</div><div class="pack-name">Pushchair / buggy for Lucas <span class="pack-note">(he will tire out — Marwell is 140 acres)</span></div></div>
+            <div class="pack-item" data-marwell-id="comforter" tabindex="0" role="checkbox" aria-checked="false" onclick="toggleMarwell(this)" onkeydown="marwellKey(event, this)"><div class="pack-check" aria-hidden="true">✓</div><div class="pack-name">Comforter / favourite teddy <span class="pack-note">(if Lucas naps in buggy)</span></div></div>
+          </div>
+        </details>
+
+        <details class="pack-category" open>
+          <summary>
+            <span class="pack-cat-icon">☀️</span>
+            <span class="pack-cat-title">Weather Kit</span>
+            <span class="pack-cat-count"></span>
+            <span class="pack-cat-chevron">›</span>
+          </summary>
+          <div class="pack-items">
+            <div class="pack-item" data-marwell-id="sunscreen" tabindex="0" role="checkbox" aria-checked="false" onclick="toggleMarwell(this)" onkeydown="marwellKey(event, this)"><div class="pack-check" aria-hidden="true">✓</div><div class="pack-name">Sunscreen factor 50 <span class="pack-note">(if sunny)</span></div></div>
+            <div class="pack-item" data-marwell-id="light-jackets" tabindex="0" role="checkbox" aria-checked="false" onclick="toggleMarwell(this)" onkeydown="marwellKey(event, this)"><div class="pack-check" aria-hidden="true">✓</div><div class="pack-name">Light jumpers / jackets <span class="pack-note">(forecast not yet known)</span></div></div>
+            <div class="pack-item" data-marwell-id="waterproofs" tabindex="0" role="checkbox" aria-checked="false" onclick="toggleMarwell(this)" onkeydown="marwellKey(event, this)"><div class="pack-check" aria-hidden="true">✓</div><div class="pack-name">Compact waterproofs <span class="pack-note">(precaution — UK weather)</span></div></div>
+            <div class="pack-item" data-marwell-id="umbrella" tabindex="0" role="checkbox" aria-checked="false" onclick="toggleMarwell(this)" onkeydown="marwellKey(event, this)"><div class="pack-check" aria-hidden="true">✓</div><div class="pack-name">Compact umbrella in the bag</div></div>
+          </div>
+        </details>
+
+        <details class="pack-category" open>
+          <summary>
+            <span class="pack-cat-icon">🎒</span>
+            <span class="pack-cat-title">Day Bag</span>
+            <span class="pack-cat-count"></span>
+            <span class="pack-cat-chevron">›</span>
+          </summary>
+          <div class="pack-items">
+            <div class="pack-item" data-marwell-id="backpack" tabindex="0" role="checkbox" aria-checked="false" onclick="toggleMarwell(this)" onkeydown="marwellKey(event, this)"><div class="pack-check" aria-hidden="true">✓</div><div class="pack-name">Backpack <span class="pack-note">(hands-free with the boys)</span></div></div>
+            <div class="pack-item" data-marwell-id="phone-charger" tabindex="0" role="checkbox" aria-checked="false" onclick="toggleMarwell(this)" onkeydown="marwellKey(event, this)"><div class="pack-check" aria-hidden="true">✓</div><div class="pack-name">Phone fully charged + power bank</div></div>
+            <div class="pack-item" data-marwell-id="camera" tabindex="0" role="checkbox" aria-checked="false" onclick="toggleMarwell(this)" onkeydown="marwellKey(event, this)"><div class="pack-check" aria-hidden="true">✓</div><div class="pack-name">Camera <span class="pack-note">(optional — phone works fine)</span></div></div>
+            <div class="pack-item" data-marwell-id="hand-sanitiser" tabindex="0" role="checkbox" aria-checked="false" onclick="toggleMarwell(this)" onkeydown="marwellKey(event, this)"><div class="pack-check" aria-hidden="true">✓</div><div class="pack-name">Hand sanitiser <span class="pack-note">(animal contact + lunch)</span></div></div>
+            <div class="pack-item" data-marwell-id="tissues" tabindex="0" role="checkbox" aria-checked="false" onclick="toggleMarwell(this)" onkeydown="marwellKey(event, this)"><div class="pack-check" aria-hidden="true">✓</div><div class="pack-name">Tissues / kitchen roll</div></div>
+            <div class="pack-item" data-marwell-id="plasters" tabindex="0" role="checkbox" aria-checked="false" onclick="toggleMarwell(this)" onkeydown="marwellKey(event, this)"><div class="pack-check" aria-hidden="true">✓</div><div class="pack-name">Plasters &amp; basic first aid</div></div>
+            <div class="pack-item" data-marwell-id="binoculars" tabindex="0" role="checkbox" aria-checked="false" onclick="toggleMarwell(this)" onkeydown="marwellKey(event, this)"><div class="pack-check" aria-hidden="true">✓</div><div class="pack-name">Mini binoculars <span class="pack-note">(Gabriel will love these)</span></div></div>
+          </div>
+        </details>
+
+      </div>
+
+      <!-- Game-plan tip -->
+      <div style="margin-top:24px;background:white;border:1px dashed var(--mid-green);border-radius:11px;padding:16px 20px;display:flex;gap:12px;align-items:flex-start;">
+        <div style="font-size:22px;line-height:1;flex-shrink:0;" aria-hidden="true">💡</div>
+        <div style="font-size:13px;color:var(--text-mid);line-height:1.55;">
+          <strong style="color:var(--mid-green);">Game plan on the day:</strong> head to the furthest exhibits first while energy is high (animals are also more active in the cool morning), then loop back toward the entrance via the playgrounds for the afternoon when the boys flag. Save the gift shop for the very end so you're not carrying anything all day.
+        </div>
+      </div>
+
+      <!-- Bottom progress + reset -->
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:20px;padding:14px 18px;background:white;border:1px solid var(--border);border-radius:11px;flex-wrap:wrap;gap:10px;">
+        <div style="font-size:12px;color:var(--text-light);">
+          <span id="marwell-progress" style="font-weight:600;color:var(--mid-green);">0 of 0</span> items packed
+        </div>
+        <button onclick="resetMarwell()" style="padding:7px 14px;background:none;border:1px solid var(--border);border-radius:18px;font-family:'DM Sans',sans-serif;font-size:11.5px;font-weight:500;color:var(--text-mid);cursor:pointer;">↻ Reset Marwell list</button>
+      </div>
+
+    </div><!-- /pack-marwell -->
+
+  </div>
+</div><!-- /beachpack panel -->
+
+<!-- ═══════════════ WEATHER TAB ═══════════════ -->
+<div id="weather" class="tab-panel" role="tabpanel" aria-labelledby="tab-weather">
+  <div style="max-width:960px;margin:0 auto;padding:44px 48px 80px;">
+
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:28px;flex-wrap:wrap;gap:12px;">
+      <div>
+        <div style="font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:var(--deep-green);">Hampshire Forecast</div>
+        <div style="font-size:12px;color:var(--text-light);margin-top:3px;">7-day outlook · Updates each time you open the planner</div>
+      </div>
+      <button onclick="refreshWeather()" style="padding:9px 18px;background:var(--mid-green);color:white;border:none;border-radius:20px;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:600;cursor:pointer;letter-spacing:0.3px;">↻ Refresh</button>
+    </div>
+
+    <!-- Current conditions -->
+    <div id="wx-current" style="background:linear-gradient(135deg,var(--deep-green),var(--mid-green));border-radius:16px;padding:28px 32px;color:white;margin-bottom:24px;min-height:100px;display:flex;align-items:center;justify-content:center;">
+      <div style="font-size:13px;color:rgba(255,255,255,0.5);">Loading forecast…</div>
+    </div>
+
+    <!-- 7-day strip -->
+    <div style="font-family:'Playfair Display',serif;font-size:17px;font-weight:700;color:var(--deep-green);margin-bottom:14px;">Next 7 days</div>
+    <div id="wx-days" class="wx-days-grid" style="display:grid;grid-template-columns:repeat(7, 1fr);gap:10px;margin-bottom:24px;"></div>
+
+    <!-- Weekend highlights -->
+    <div style="font-family:'Playfair Display',serif;font-size:17px;font-weight:700;color:var(--deep-green);margin-bottom:14px;margin-top:28px;">Your Weekend Days</div>
+    <div style="background:white;border-radius:13px;border:1px solid var(--border);padding:20px 24px;">
+      <div style="font-size:12.5px;color:var(--text-mid);line-height:1.7;">
+        The forecast above covers the next 7 days. With today being 21 May, this weekend's <strong>23–25 May</strong> are now in the window — so the Sandbanks beach day on Sunday should already show in the strip above. The final weekend (30–31 May) sits just beyond — check back from ~24 May as it approaches.
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3, 1fr);gap:12px;margin-top:16px;" class="glance-grid">
+        <div data-date="2026-05-16" style="background:var(--lavender-light);border-radius:9px;padding:12px 14px;">
+          <div style="font-size:9.5px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--lavender);margin-bottom:5px;">16 May · Sat 🎂</div>
+          <div style="font-size:12px;color:var(--text-mid);line-height:1.4;">Theodore's party outdoors · Matilda indoors PM</div>
+        </div>
+        <div data-date="2026-05-17" style="background:var(--sky-light);border-radius:9px;padding:12px 14px;">
+          <div style="font-size:9.5px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#3E82B0;margin-bottom:5px;">17 May · Sun 🌧</div>
+          <div style="font-size:12px;color:var(--text-mid);line-height:1.4;">Patchy rain likely · Bowling indoors with Kezia &amp; Rowan ✓</div>
+        </div>
+        <div data-date="2026-05-23" style="background:var(--amber-light);border-radius:9px;padding:12px 14px;">
+          <div style="font-size:9.5px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#C78A22;margin-bottom:5px;">23 May · Sat 🌡</div>
+          <div style="font-size:12px;color:var(--text-mid);line-height:1.4;">Heatwave start · ~28°C · Rafa's party — hats, water, shade</div>
+        </div>
+        <div data-date="2026-05-24" style="background:var(--blush-light);border-radius:9px;padding:12px 14px;">
+          <div style="font-size:9.5px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--blush);margin-bottom:5px;">24 May · Sun 🔥</div>
+          <div style="font-size:12px;color:var(--text-mid);line-height:1.4;">Sandbanks 28–30°C · leave 7:30am · arrive before 9am · off sand by 12:30</div>
+        </div>
+        <div data-date="2026-05-25" style="background:var(--orange-light);border-radius:9px;padding:12px 14px;">
+          <div style="font-size:9.5px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--orange);margin-bottom:5px;">25 May · Mon 🌞</div>
+          <div style="font-size:12px;color:var(--text-mid);line-height:1.4;">Possible record 30–33°C · paddling pool AM · Heathrow T3 15:30</div>
+        </div>
+        <div data-date="2026-05-30" style="background:var(--pale-green);border-radius:9px;padding:12px 14px;">
+          <div style="font-size:9.5px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--mid-green);margin-bottom:5px;">30 May · Sat 🍺</div>
+          <div style="font-size:12px;color:var(--text-mid);line-height:1.4;">Tournament + Craven Arms · Beyond forecast window — check from ~27 May</div>
+        </div>
+        <div data-date="2026-05-31" style="background:#FFE9C8;border-radius:9px;padding:12px 14px;">
+          <div style="font-size:9.5px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#C78A22;margin-bottom:5px;">31 May · Sun 🦒</div>
+          <div style="font-size:12px;color:var(--text-mid);line-height:1.4;">Marwell Zoo · full day · no football, no Mass</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="font-size:10px;color:var(--text-light);text-align:right;margin-top:14px;letter-spacing:0.3px;">
+      Weather data by <a href="https://open-meteo.com/" target="_blank" rel="noopener" style="color:var(--text-light);">Open-Meteo</a> · CC BY 4.0
+    </div>
+
+  </div>
+</div>
+
+<div class="app-footer">Prepared May 2026 · Gabriel &amp; Lucas</div>
+
+<div id="fp-toast" role="status" aria-live="polite"></div>
+<div id="ptr-indicator" aria-hidden="true">↓</div>
+
+<script>
+  // ─────────────────────────────────────────
+  // TAB SWITCHING + URL HASH
+  // ─────────────────────────────────────────
+  function switchTab(id, btn, opts) {
+    opts = opts || {};
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => {
+      b.classList.remove('active');
+      b.setAttribute('aria-selected', 'false');
+    });
+    document.getElementById(id).classList.add('active');
+    if (btn) {
+      btn.classList.add('active');
+      btn.setAttribute('aria-selected', 'true');
+    }
+    if (!opts.skipHash) {
+      history.replaceState(null, '', '#' + id);
+    }
+    // Load weather on demand only — not at boot
+    if (id === 'weather') loadWeather();
+  }
+
+  function switchDn(id, btn) {
+    document.querySelectorAll('.dn-section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.dn-tab').forEach(b => {
+      b.classList.remove('active');
+      b.setAttribute('aria-selected', 'false');
+    });
+    document.getElementById(id).classList.add('active');
+    if (btn) {
+      btn.classList.add('active');
+      btn.setAttribute('aria-selected', 'true');
+    }
+  }
+
+  // Restore tab from URL hash on load
+  function restoreTabFromHash() {
+    const hash = (location.hash || '').replace('#', '');
+    if (!hash) return;
+    const validIds = ['weekends', 'dinners', 'beachpack', 'weather'];
+    if (validIds.includes(hash)) {
+      const btn = document.getElementById('tab-' + hash);
+      if (btn) switchTab(hash, btn, { skipHash: true });
+    }
+  }
+
+  // ─────────────────────────────────────────
+  // TOAST
+  // ─────────────────────────────────────────
+  let toastTimer = null;
+  function showToast(msg, durationMs) {
+    durationMs = durationMs || 2200;
+    const el = document.getElementById('fp-toast');
+    if (!el) return;
+    el.innerHTML = msg;
+    el.style.pointerEvents = 'none';
+    el.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => el.classList.remove('show'), durationMs);
+  }
+  function showToastInteractive(html, durationMs) {
+    durationMs = durationMs || 4000;
+    const el = document.getElementById('fp-toast');
+    if (!el) return;
+    el.innerHTML = html;
+    el.style.pointerEvents = 'all';
+    el.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => {
+      el.classList.remove('show');
+      el.style.pointerEvents = 'none';
+    }, durationMs);
+  }
+  function dismissToast() {
+    const el = document.getElementById('fp-toast');
+    if (el) { el.classList.remove('show'); el.style.pointerEvents = 'none'; }
+    clearTimeout(toastTimer);
+  }
+
+  // ─────────────────────────────────────────
+  // localStorage — versioned store helper
+  // All keys store { _v: 1, ...data }
+  // Version mismatch → discard silently (fresh start)
+  // ─────────────────────────────────────────
+  const STORE_VERSION = 1;
+
+  function lsGet(key) {
+    try {
+      const raw = localStorage.getItem(key);
+      if (!raw) return {};
+      const parsed = JSON.parse(raw);
+      if (parsed._v !== STORE_VERSION) return {};
+      return parsed;
+    } catch (e) { return {}; }
+  }
+
+  function lsSet(key, data) {
+    try {
+      localStorage.setItem(key, JSON.stringify(Object.assign({ _v: STORE_VERSION }, data)));
+    } catch (e) {}
+  }
+
+  function lsDel(key) {
+    try { localStorage.removeItem(key); } catch (e) {}
+  }
+
+  // ─────────────────────────────────────────
+  // SHOPPING LIST — localStorage + a11y
+  // ─────────────────────────────────────────
+  const SHOP_KEY = 'fp-shop-may26';
+
+  function updateShopProgress() {
+    const items = document.querySelectorAll('.shop-item[data-shop-id]');
+    const checked = document.querySelectorAll('.shop-item[data-shop-id].checked');
+    const el = document.getElementById('shop-progress');
+    if (el) el.textContent = `${checked.length} of ${items.length}`;
+  }
+
+  function toggleShop(el) {
+    el.classList.add('ticking');
+    setTimeout(() => el.classList.remove('ticking'), 150);
+    el.classList.toggle('checked');
+    const isChecked = el.classList.contains('checked');
+    el.setAttribute('aria-checked', isChecked ? 'true' : 'false');
+    const id = el.dataset.shopId;
+    if (id) {
+      const state = lsGet(SHOP_KEY);
+      if (isChecked) state[id] = 1;
+      else delete state[id];
+      lsSet(SHOP_KEY, state);
+    }
+    updateShopProgress();
+  }
+
+  function shopKey(event, el) {
+    if (event.key === ' ' || event.key === 'Enter') {
+      event.preventDefault();
+      toggleShop(el);
+    }
+  }
+
+  // Reset with undo toast instead of confirm()
+  let resetShopSnapshot = null;
+
+  function resetShop() {
+    resetShopSnapshot = {};
+    document.querySelectorAll('.shop-item[data-shop-id].checked').forEach(el => {
+      resetShopSnapshot[el.dataset.shopId] = 1;
+    });
+    lsDel(SHOP_KEY);
+    document.querySelectorAll('.shop-item[data-shop-id]').forEach(el => {
+      el.classList.remove('checked');
+      el.setAttribute('aria-checked', 'false');
+    });
+    updateShopProgress();
+    showToastInteractive(
+      'Shopping list cleared &nbsp;<button onclick="undoResetShop()" style="background:var(--amber);color:var(--deep-green);border:none;border-radius:12px;padding:3px 10px;font-family:\'DM Sans\',sans-serif;font-size:11px;font-weight:700;cursor:pointer;">Undo</button>',
+      4000
+    );
+  }
+
+  function undoResetShop() {
+    if (!resetShopSnapshot) return;
+    lsSet(SHOP_KEY, resetShopSnapshot);
+    document.querySelectorAll('.shop-item[data-shop-id]').forEach(el => {
+      if (resetShopSnapshot[el.dataset.shopId]) {
+        el.classList.add('checked');
+        el.setAttribute('aria-checked', 'true');
+      }
+    });
+    updateShopProgress();
+    resetShopSnapshot = null;
+    dismissToast();
+    showToast('List restored ✓', 1800);
+  }
+
+  function restoreShopState() {
+    const state = lsGet(SHOP_KEY);
+    document.querySelectorAll('.shop-item[data-shop-id]').forEach(el => {
+      if (state[el.dataset.shopId]) {
+        el.classList.add('checked');
+        el.setAttribute('aria-checked', 'true');
+      }
+    });
+    updateShopProgress();
+  }
+
+  // ─────────────────────────────────────────
+  // BEACH PACK — localStorage + a11y
+  // ─────────────────────────────────────────
+  const PACK_KEY = 'fp-pack-may26';
+
+  function updatePackProgress() {
+    const items = document.querySelectorAll('.pack-item[data-pack-id]');
+    const checked = document.querySelectorAll('.pack-item[data-pack-id].checked');
+    const total = items.length;
+    const done = checked.length;
+    const el = document.getElementById('pack-progress');
+    if (el) el.textContent = `${done} of ${total}`;
+    const heroEl = document.getElementById('pack-progress-num');
+    if (heroEl) heroEl.textContent = `${done} / ${total}`;
+
+    document.querySelectorAll('#pack-beach .pack-category').forEach(cat => {
+      const catItems = cat.querySelectorAll('.pack-item[data-pack-id]');
+      const catDone = cat.querySelectorAll('.pack-item[data-pack-id].checked').length;
+      const countEl = cat.querySelector('.pack-cat-count');
+      if (countEl) {
+        countEl.textContent = `${catDone} / ${catItems.length}`;
+        catDone === catItems.length && catItems.length > 0
+          ? countEl.classList.add('complete')
+          : countEl.classList.remove('complete');
+      }
+    });
+  }
+
+  function togglePack(el) {
+    el.classList.add('ticking');
+    setTimeout(() => el.classList.remove('ticking'), 150);
+    el.classList.toggle('checked');
+    const isChecked = el.classList.contains('checked');
+    el.setAttribute('aria-checked', isChecked ? 'true' : 'false');
+    const id = el.dataset.packId;
+    if (id) {
+      const state = lsGet(PACK_KEY);
+      if (isChecked) state[id] = 1;
+      else delete state[id];
+      lsSet(PACK_KEY, state);
+    }
+    updatePackProgress();
+  }
+
+  function packKey(event, el) {
+    if (event.key === ' ' || event.key === 'Enter') {
+      event.preventDefault();
+      togglePack(el);
+    }
+  }
+
+  let resetPackSnapshot = null;
+
+  function resetPack() {
+    resetPackSnapshot = {};
+    document.querySelectorAll('.pack-item[data-pack-id].checked').forEach(el => {
+      resetPackSnapshot[el.dataset.packId] = 1;
+    });
+    lsDel(PACK_KEY);
+    document.querySelectorAll('.pack-item[data-pack-id]').forEach(el => {
+      el.classList.remove('checked');
+      el.setAttribute('aria-checked', 'false');
+    });
+    updatePackProgress();
+    showToastInteractive(
+      'Beach list cleared &nbsp;<button onclick="undoResetPack()" style="background:var(--amber);color:var(--deep-green);border:none;border-radius:12px;padding:3px 10px;font-family:\'DM Sans\',sans-serif;font-size:11px;font-weight:700;cursor:pointer;">Undo</button>',
+      4000
+    );
+  }
+
+  function undoResetPack() {
+    if (!resetPackSnapshot) return;
+    lsSet(PACK_KEY, resetPackSnapshot);
+    document.querySelectorAll('.pack-item[data-pack-id]').forEach(el => {
+      if (resetPackSnapshot[el.dataset.packId]) {
+        el.classList.add('checked');
+        el.setAttribute('aria-checked', 'true');
+      }
+    });
+    updatePackProgress();
+    resetPackSnapshot = null;
+    dismissToast();
+    showToast('List restored ✓', 1800);
+  }
+
+  function restorePackState() {
+    const state = lsGet(PACK_KEY);
+    document.querySelectorAll('.pack-item[data-pack-id]').forEach(el => {
+      if (state[el.dataset.packId]) {
+        el.classList.add('checked');
+        el.setAttribute('aria-checked', 'true');
+      }
+    });
+    updatePackProgress();
+  }
+
+  // ─────────────────────────────────────────
+  // PACK SUB-NAV (Beach / Marwell)
+  // ─────────────────────────────────────────
+  function switchPack(id, btn) {
+    document.querySelectorAll('.pack-section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.pack-tab').forEach(b => {
+      b.classList.remove('active');
+      b.setAttribute('aria-selected', 'false');
+    });
+    document.getElementById(id).classList.add('active');
+    if (btn) {
+      btn.classList.add('active');
+      btn.setAttribute('aria-selected', 'true');
+    }
+  }
+
+  // ─────────────────────────────────────────
+  // MARWELL PACK — localStorage + a11y
+  // ─────────────────────────────────────────
+  const MARWELL_KEY = 'fp-marwell-may26';
+
+  function updateMarwellProgress() {
+    const items = document.querySelectorAll('.pack-item[data-marwell-id]');
+    const checked = document.querySelectorAll('.pack-item[data-marwell-id].checked');
+    const total = items.length;
+    const done = checked.length;
+    const el = document.getElementById('marwell-progress');
+    if (el) el.textContent = `${done} of ${total}`;
+    const heroEl = document.getElementById('marwell-progress-num');
+    if (heroEl) heroEl.textContent = `${done} / ${total}`;
+
+    document.querySelectorAll('#pack-marwell .pack-category').forEach(cat => {
+      const catItems = cat.querySelectorAll('.pack-item[data-marwell-id]');
+      const catDone = cat.querySelectorAll('.pack-item[data-marwell-id].checked').length;
+      const countEl = cat.querySelector('.pack-cat-count');
+      if (countEl) {
+        countEl.textContent = `${catDone} / ${catItems.length}`;
+        catDone === catItems.length && catItems.length > 0
+          ? countEl.classList.add('complete')
+          : countEl.classList.remove('complete');
+      }
+    });
+  }
+
+  function toggleMarwell(el) {
+    el.classList.add('ticking');
+    setTimeout(() => el.classList.remove('ticking'), 150);
+    el.classList.toggle('checked');
+    const isChecked = el.classList.contains('checked');
+    el.setAttribute('aria-checked', isChecked ? 'true' : 'false');
+    const id = el.dataset.marwellId;
+    if (id) {
+      const state = lsGet(MARWELL_KEY);
+      if (isChecked) state[id] = 1;
+      else delete state[id];
+      lsSet(MARWELL_KEY, state);
+    }
+    updateMarwellProgress();
+  }
+
+  function marwellKey(event, el) {
+    if (event.key === ' ' || event.key === 'Enter') {
+      event.preventDefault();
+      toggleMarwell(el);
+    }
+  }
+
+  let resetMarwellSnapshot = null;
+
+  function resetMarwell() {
+    resetMarwellSnapshot = {};
+    document.querySelectorAll('.pack-item[data-marwell-id].checked').forEach(el => {
+      resetMarwellSnapshot[el.dataset.marwellId] = 1;
+    });
+    lsDel(MARWELL_KEY);
+    document.querySelectorAll('.pack-item[data-marwell-id]').forEach(el => {
+      el.classList.remove('checked');
+      el.setAttribute('aria-checked', 'false');
+    });
+    updateMarwellProgress();
+    showToastInteractive(
+      'Marwell list cleared &nbsp;<button onclick="undoResetMarwell()" style="background:var(--amber);color:var(--deep-green);border:none;border-radius:12px;padding:3px 10px;font-family:\'DM Sans\',sans-serif;font-size:11px;font-weight:700;cursor:pointer;">Undo</button>',
+      4000
+    );
+  }
+
+  function undoResetMarwell() {
+    if (!resetMarwellSnapshot) return;
+    lsSet(MARWELL_KEY, resetMarwellSnapshot);
+    document.querySelectorAll('.pack-item[data-marwell-id]').forEach(el => {
+      if (resetMarwellSnapshot[el.dataset.marwellId]) {
+        el.classList.add('checked');
+        el.setAttribute('aria-checked', 'true');
+      }
+    });
+    updateMarwellProgress();
+    resetMarwellSnapshot = null;
+    dismissToast();
+    showToast('List restored ✓', 1800);
+  }
+
+  function restoreMarwellState() {
+    const state = lsGet(MARWELL_KEY);
+    document.querySelectorAll('.pack-item[data-marwell-id]').forEach(el => {
+      if (state[el.dataset.marwellId]) {
+        el.classList.add('checked');
+        el.setAttribute('aria-checked', 'true');
+      }
+    });
+    updateMarwellProgress();
+  }
+
+  // ─────────────────────────────────────────
+  // BOOKING CONFIRMATIONS
+  // ─────────────────────────────────────────
+  const CONFIRM_KEY = 'fp-confirms-may26';
+
+  function toggleConfirm(el) {
+    el.classList.add('ticking');
+    setTimeout(() => el.classList.remove('ticking'), 150);
+    el.classList.toggle('confirmed');
+    const isConfirmed = el.classList.contains('confirmed');
+    el.setAttribute('aria-checked', isConfirmed ? 'true' : 'false');
+    const id = el.dataset.confirmId;
+    if (id) {
+      const state = lsGet(CONFIRM_KEY);
+      if (isConfirmed) state[id] = 1;
+      else delete state[id];
+      lsSet(CONFIRM_KEY, state);
+    }
+    showToast(isConfirmed ? '✓ Marked as booked' : 'Booking unmarked');
+  }
+
+  function confirmKey(event, el) {
+    if (event.key === ' ' || event.key === 'Enter') {
+      event.preventDefault();
+      toggleConfirm(el);
+    }
+  }
+
+  function restoreConfirmState() {
+    const state = lsGet(CONFIRM_KEY);
+    document.querySelectorAll('.booking-item[data-confirm-id]').forEach(el => {
+      if (state[el.dataset.confirmId]) {
+        el.classList.add('confirmed');
+        el.setAttribute('aria-checked', 'true');
+      }
+    });
+  }
+
+  // ─────────────────────────────────────────
+  // QUICK NOTES (per day)
+  // ─────────────────────────────────────────
+  const NOTES_KEY = 'fp-notes-may26';
+
+  function saveNote(el) {
+    const id = el.dataset.notesId;
+    if (!id) return;
+    const state = lsGet(NOTES_KEY);
+    if (el.value.trim()) state[id] = el.value;
+    else delete state[id];
+    lsSet(NOTES_KEY, state);
+  }
+
+  function restoreNotes() {
+    const state = lsGet(NOTES_KEY);
+    document.querySelectorAll('textarea[data-notes-id]').forEach(el => {
+      if (state[el.dataset.notesId]) el.value = state[el.dataset.notesId];
+    });
+  }
+
+  // ─────────────────────────────────────────
+  // WEATHER (Open-Meteo, 7-day, Basingstoke)
+  // ─────────────────────────────────────────
+
+  // WMO weather code → emoji + short label
+  const WMO = {
+    0:  ['☀️','Clear'],
+    1:  ['🌤','Mainly clear'],
+    2:  ['⛅️','Partly cloudy'],
+    3:  ['☁️','Overcast'],
+    45: ['🌫','Fog'],
+    48: ['🌫','Rime fog'],
+    51: ['🌦','Light drizzle'],
+    53: ['🌦','Drizzle'],
+    55: ['🌧','Heavy drizzle'],
+    56: ['🌧','Freezing drizzle'],
+    57: ['🌧','Freezing drizzle'],
+    61: ['🌦','Light rain'],
+    63: ['🌧','Rain'],
+    65: ['🌧','Heavy rain'],
+    66: ['🌧','Freezing rain'],
+    67: ['🌧','Freezing rain'],
+    71: ['🌨','Light snow'],
+    73: ['🌨','Snow'],
+    75: ['❄️','Heavy snow'],
+    77: ['🌨','Snow grains'],
+    80: ['🌦','Rain showers'],
+    81: ['🌧','Rain showers'],
+    82: ['🌧','Heavy showers'],
+    85: ['🌨','Snow showers'],
+    86: ['❄️','Heavy snow showers'],
+    95: ['⛈️','Thunderstorm'],
+    96: ['⛈️','Thunder + hail'],
+    99: ['⛈️','Heavy thunder']
+  };
+
+  function wmoIcon(code) { return (WMO[code] || ['🌡','—'])[0]; }
+  function wmoDesc(code) { return (WMO[code] || ['🌡','—'])[1]; }
+
+  const DAYS = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+  const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+  let wxLoaded = false;
+  let wxLoading = false;
+
+  async function loadWeather(opts) {
+    opts = opts || {};
+    if (wxLoaded && !opts.force) return;
+    if (wxLoading) return;
+    wxLoading = true;
+
+    const currentEl = document.getElementById('wx-current');
+    const daysEl = document.getElementById('wx-days');
+    if (!currentEl) { wxLoading = false; return; }
+    currentEl.innerHTML = '<div style="font-size:13px;color:rgba(255,255,255,0.5);">Loading forecast…</div>';
+    daysEl.innerHTML = '';
+
+    // 10-second timeout via AbortController
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 10000);
+
+    try {
+      // Basingstoke, Hampshire ≈ 51.27°N, -1.08°E
+      const url = 'https://api.open-meteo.com/v1/forecast' +
+        '?latitude=51.27&longitude=-1.08' +
+        '&current=temperature_2m,apparent_temperature,weather_code,wind_speed_10m,wind_direction_10m,relative_humidity_2m,precipitation' +
+        '&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max,precipitation_sum,wind_speed_10m_max' +
+        '&timezone=Europe%2FLondon' +
+        '&forecast_days=7';
+
+      const res = await fetch(url, { signal: controller.signal });
+      clearTimeout(timeoutId);
+      if (!res.ok) throw new Error('fetch failed: ' + res.status);
+      const d = await res.json();
+
+      // Current conditions
+      const cur = d.current;
+      const curCode = parseInt(cur.weather_code);
+      const tempC = Math.round(cur.temperature_2m);
+      const feelsC = Math.round(cur.apparent_temperature);
+      const desc = wmoDesc(curCode);
+      const icon = wmoIcon(curCode);
+      const humidity = cur.relative_humidity_2m;
+      const windKmph = Math.round(cur.wind_speed_10m);
+      const windDir = degToCompass(cur.wind_direction_10m);
+      const precip = cur.precipitation;
+
+      currentEl.innerHTML = `
+        <div style="display:flex;align-items:center;gap:24px;width:100%;flex-wrap:wrap;">
+          <div style="font-size:56px;line-height:1;" aria-hidden="true">${icon}</div>
+          <div style="flex:1;min-width:140px;">
+            <div style="font-size:13px;color:rgba(255,255,255,0.55);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;">Now · Basingstoke / Hampshire</div>
+            <div style="font-size:42px;font-family:'Playfair Display',serif;font-weight:900;line-height:1;margin-bottom:4px;">${tempC}°C</div>
+            <div style="font-size:14px;color:rgba(255,255,255,0.8);">${desc}</div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px 24px;">
+            <div><div style="font-size:10px;color:rgba(255,255,255,0.45);text-transform:uppercase;letter-spacing:1px;">Feels like</div><div style="font-size:15px;font-weight:600;">${feelsC}°C</div></div>
+            <div><div style="font-size:10px;color:rgba(255,255,255,0.45);text-transform:uppercase;letter-spacing:1px;">Humidity</div><div style="font-size:15px;font-weight:600;">${humidity}%</div></div>
+            <div><div style="font-size:10px;color:rgba(255,255,255,0.45);text-transform:uppercase;letter-spacing:1px;">Wind</div><div style="font-size:15px;font-weight:600;">${windKmph} km/h ${windDir}</div></div>
+            <div><div style="font-size:10px;color:rgba(255,255,255,0.45);text-transform:uppercase;letter-spacing:1px;">Precip</div><div style="font-size:15px;font-weight:600;">${precip} mm</div></div>
+          </div>
+        </div>`;
+
+      // 7-day forecast
+      const days = d.daily;
+      const cards = [];
+      for (let i = 0; i < days.time.length; i++) {
+        const dateStr = days.time[i];
+        const [y, m, dd] = dateStr.split('-');
+        const jsDate = new Date(y, m - 1, dd);
+        const dayName = DAYS[jsDate.getDay()];
+        const monthName = MONTHS[jsDate.getMonth()];
+        const code = parseInt(days.weather_code[i]);
+        const maxC = Math.round(days.temperature_2m_max[i]);
+        const minC = Math.round(days.temperature_2m_min[i]);
+        const rainChance = days.precipitation_probability_max[i] || 0;
+        const rainColor = rainChance > 60 ? '#5BA4CF' : rainChance > 30 ? '#E8A838' : '#2D6A4F';
+        const isToday = i === 0;
+        const isWeekendActivity = (dateStr === '2026-05-16' || dateStr === '2026-05-17' || dateStr === '2026-05-23' || dateStr === '2026-05-24' || dateStr === '2026-05-25' || dateStr === '2026-05-30' || dateStr === '2026-05-31');
+        const cardBorder = isWeekendActivity ? '2px solid var(--amber)' : '1px solid var(--border)';
+        const todayBadge = isToday ? '<span style="font-size:8.5px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--amber);margin-left:6px;">Today</span>' : '';
+        const activityBadge = isWeekendActivity ? '<div style="font-size:8.5px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--amber);margin-top:6px;">★ Weekend</div>' : '';
+
+        cards.push(`<div style="background:white;border-radius:11px;padding:14px 12px;border:${cardBorder};box-shadow:0 1px 6px rgba(26,58,42,0.04);text-align:center;">
+          <div style="font-size:10px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--text-light);margin-bottom:1px;">${dayName}${todayBadge}</div>
+          <div style="font-size:12px;font-weight:600;color:var(--text-dark);margin-bottom:8px;">${parseInt(dd)} ${monthName}</div>
+          <div style="font-size:28px;line-height:1;margin-bottom:6px;" aria-hidden="true" title="${wmoDesc(code)}">${wmoIcon(code)}</div>
+          <div style="margin-bottom:6px;">
+            <span style="font-size:17px;font-family:'Playfair Display',serif;font-weight:900;color:var(--deep-green);">${maxC}°</span>
+            <span style="font-size:11px;color:var(--text-light);margin-left:2px;">${minC}°</span>
+          </div>
+          <div style="font-size:10px;color:var(--text-light);text-transform:uppercase;letter-spacing:0.8px;">Rain</div>
+          <div style="font-size:13px;font-weight:700;color:${rainColor};">${rainChance}%</div>
+          ${activityBadge}
+        </div>`);
+      }
+      daysEl.innerHTML = cards.join('');
+
+      wxLoaded = true;
+    } catch (e) {
+      clearTimeout(timeoutId);
+      const isTimeout = e.name === 'AbortError';
+      currentEl.innerHTML = `<div style="font-size:13px;color:rgba(255,255,255,0.6);">⚠️ ${isTimeout ? 'Forecast took too long to load' : 'Could not load forecast'} — tap Refresh to try again.</div>`;
+    } finally {
+      wxLoading = false;
+    }
+  }
+
+  function degToCompass(deg) {
+    if (deg == null) return '';
+    const dirs = ['N','NNE','NE','ENE','E','ESE','SE','SSE','S','SSW','SW','WSW','W','WNW','NW','NNW'];
+    return dirs[Math.round(deg / 22.5) % 16];
+  }
+
+  function refreshWeather() {
+    loadWeather({ force: true });
+  }
+
+  // ─────────────────────────────────────────
+  // HIDE PAST DAYS
+  // Uses toLocaleDateString('en-CA') for BST-safe YYYY-MM-DD
+  // ─────────────────────────────────────────
+  function todayLocalISO() {
+    return new Date().toLocaleDateString('en-CA'); // YYYY-MM-DD in local time
+  }
+
+  function hidePastDays() {
+    const today = todayLocalISO();
+
+    // Hide individual day rows whose date is strictly before today
+    document.querySelectorAll('[data-date]').forEach(el => {
+      if (el.dataset.date < today) {
+        el.style.display = 'none';
+      }
+    });
+
+    // Hide weekend-blocks (and their preceding section-header) whose last date is in the past
+    let visibleBlocks = 0;
+    document.querySelectorAll('[data-block-end-date]').forEach(el => {
+      if (el.dataset.blockEndDate < today) {
+        el.style.display = 'none';
+      } else if (el.classList.contains('weekend-block')) {
+        visibleBlocks++;
+      }
+    });
+
+    // If every weekend block is hidden, show the "all wrapped up" notice
+    const notice = document.getElementById('all-past-notice');
+    if (notice && visibleBlocks === 0) {
+      notice.style.display = 'block';
+    }
+  }
+
+  // ─────────────────────────────────────────
+  // PULL-TO-REFRESH
+  // Active only when the weather tab is visible
+  // and the page is already scrolled to the top.
+  // ─────────────────────────────────────────
+  (function () {
+    const THRESHOLD   = 72;   // px of pull needed to trigger
+    const MAX_PULL    = 110;  // px — indicator stops travelling beyond this
+    const ptr         = document.getElementById('ptr-indicator');
+
+    let startY    = 0;
+    let pulling   = false;
+    let triggered = false;
+
+    function weatherTabActive() {
+      const panel = document.getElementById('weather');
+      return panel && panel.classList.contains('active');
+    }
+
+    function atScrollTop() {
+      // window.scrollY covers the whole page (including the sticky header)
+      return window.scrollY <= 0;
+    }
+
+    document.addEventListener('touchstart', function (e) {
+      if (!weatherTabActive()) return;
+      if (!atScrollTop()) return;
+      if (e.touches.length !== 1) return;
+      startY   = e.touches[0].clientY;
+      pulling  = true;
+      triggered = false;
+    }, { passive: true });
+
+    document.addEventListener('touchmove', function (e) {
+      if (!pulling) return;
+      const dy = e.touches[0].clientY - startY;
+      if (dy <= 0) { pulling = false; return; }
+
+      // Clamp travel with resistance so it feels physical
+      const travel = Math.min(dy * 0.45, MAX_PULL);
+      const pct    = Math.min(travel / THRESHOLD, 1);
+
+      ptr.className = 'ptr-pulling';
+      ptr.style.transform = `translateX(-50%) translateY(${travel - 64}px)`;
+      ptr.style.opacity   = String(pct);
+      // Swap arrow → spinner icon once threshold is met
+      ptr.textContent = pct >= 1 ? '↻' : '↓';
+    }, { passive: true });
+
+    document.addEventListener('touchend', function () {
+      if (!pulling) return;
+      pulling = false;
+
+      const wasTriggered = ptr.style.opacity >= '0.95';  // reached threshold
+      ptr.style.transform = '';
+      ptr.style.opacity   = '';
+
+      if (wasTriggered && weatherTabActive() && !triggered) {
+        triggered = true;
+        ptr.className = 'ptr-loading';
+        ptr.textContent = '↻';
+
+        // Mark wx as stale so loadWeather actually re-fetches
+        wxLoaded = false;
+        loadWeather({ force: true }).then(() => {
+          ptr.className = 'ptr-done';
+          // Reset class after the fade-out transition completes
+          setTimeout(() => { ptr.className = ''; ptr.textContent = '↓'; }, 900);
+        });
+      } else {
+        // Didn't reach threshold — snap back
+        ptr.className = 'ptr-done';
+        setTimeout(() => { ptr.className = ''; ptr.textContent = '↓'; }, 900);
+      }
+    }, { passive: true });
+  })();
+
+  // ─────────────────────────────────────────
+  // BOOT
+  // Weather loads on demand when the Forecast tab is opened.
+  // ─────────────────────────────────────────
+  window.addEventListener('DOMContentLoaded', () => {
+    hidePastDays();
+    restoreShopState();
+    restorePackState();
+    restoreMarwellState();
+    restoreConfirmState();
+    restoreNotes();
+    restoreTabFromHash();
+  });
+
+  window.addEventListener('hashchange', restoreTabFromHash);
+
+  // ─────────────────────────────────────────
+  // CACHE BUSTING — SERVICE WORKER (blob)
+  //
+  // Registers a network-first SW without needing
+  // a separate sw.js file — works on tiiny.host.
+  //
+  // How it works:
+  //   1. SW intercepts fetches for this page's URL
+  //      and always goes to the network first.
+  //   2. After fetching, it reads the app-version
+  //      meta tag from the response HTML.
+  //   3. If the version has changed since last open,
+  //      it posts a 'NEW_VERSION' message.
+  //   4. The page reloads itself (silently, no prompt)
+  //      so the user always sees the latest content.
+  //   5. If the SW fetch fails (offline), it falls
+  //      back to the cache so the app still opens.
+  //
+  // To publish an update: change the content of the
+  // <meta name="app-version"> tag at the top of the file,
+  // then re-upload. The SW picks it up on next open.
+  // ─────────────────────────────────────────
+  (function () {
+    if (!('serviceWorker' in navigator)) return;
+
+    const SW_SCRIPT = `
+const CACHE = 'fp-cache-v1';
+const PAGE_URL = self.location.origin + self.location.pathname.replace(/\\/sw-blob.*/, '');
+
+// On install: cache the page immediately
+self.addEventListener('install', e => {
+  self.skipWaiting();
+  e.waitUntil(
+    fetch(PAGE_URL, { cache: 'no-store' })
+      .then(r => caches.open(CACHE).then(c => c.put(PAGE_URL, r)))
+      .catch(() => {})
+  );
+});
+
+self.addEventListener('activate', e => {
+  e.waitUntil(self.clients.claim());
+});
+
+// Network-first for the HTML page; cache-first for everything else
+self.addEventListener('fetch', e => {
+  const url = new URL(e.request.url);
+  const isPage = url.origin === self.location.origin &&
+                 (url.pathname === '/' || url.pathname.endsWith('.html') || url.pathname === self.location.pathname);
+
+  if (!isPage) return; // let other requests (fonts, APIs) pass through normally
+
+  e.respondWith(
+    fetch(e.request, { cache: 'no-store' })
+      .then(async networkRes => {
+        // Clone before consuming the body for version check
+        const clone = networkRes.clone();
+        const text = await clone.text();
+        const match = text.match(/<meta[^>]+name="app-version"[^>]+content="([^"]+)"/);
+        const newVer = match ? match[1] : null;
+
+        if (newVer) {
+          const stored = await self.registration.scope; // just a truthy check
+          const oldVer = await caches.open(CACHE)
+            .then(c => c.match('__version__'))
+            .then(r => r ? r.text() : null)
+            .catch(() => null);
+
+          if (oldVer && oldVer !== newVer) {
+            // Version changed — tell the page to reload
+            self.clients.matchAll({ type: 'window' }).then(clients => {
+              clients.forEach(c => c.postMessage({ type: 'NEW_VERSION', version: newVer }));
+            });
+          }
+
+          // Store the new version and the page in cache
+          const c = await caches.open(CACHE);
+          c.put('__version__', new Response(newVer));
+          c.put(e.request, networkRes.clone());
+        }
+
+        return new Response(text, {
+          status: networkRes.status,
+          headers: networkRes.headers
+        });
+      })
+      .catch(() => caches.match(e.request)) // offline fallback
+  );
+});
+`;
+
+    // Register SW from a blob URL — no separate file needed
+    const blob = new Blob([SW_SCRIPT], { type: 'application/javascript' });
+    const swUrl = URL.createObjectURL(blob);
+
+    navigator.serviceWorker.register(swUrl, { scope: '/' })
+      .then(reg => {
+        // Listen for version-change messages from the SW
+        navigator.serviceWorker.addEventListener('message', e => {
+          if (e.data && e.data.type === 'NEW_VERSION') {
+            // Silent reload — SW has already cached the new version
+            window.location.reload();
+          }
+        });
+      })
+      .catch(() => {
+        // SW registration failed (e.g. cross-origin blob restriction on some browsers)
+        // Fall back to a simple fetch-and-compare version check
+        versionCheckFallback();
+      });
+
+    // Fallback: fetch the page and compare the version meta tag directly
+    function versionCheckFallback() {
+      const currentVersion = document.querySelector('meta[name="app-version"]')?.content;
+      if (!currentVersion) return;
+
+      fetch(window.location.href, { cache: 'no-store' })
+        .then(r => r.text())
+        .then(html => {
+          const match = html.match(/<meta[^>]+name="app-version"[^>]+content="([^"]+)"/);
+          const fetchedVersion = match ? match[1] : null;
+          if (fetchedVersion && fetchedVersion !== currentVersion) {
+            // Show the update banner rather than reloading silently,
+            // since we don't have SW control over the cache here
+            const banner = document.getElementById('update-banner');
+            if (banner) banner.classList.add('show');
+          }
+        })
+        .catch(() => {}); // offline — do nothing
+    }
+  })();
+</script>
+</body>
+</html>
